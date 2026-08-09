@@ -1,26 +1,216 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Theme Colors */
+  --primary: #0F4F4A;
+  --primary-hover: #0C3E3A;
+  --secondary-dark: #15191A;
+  
+  /* Background variations */
+  --background-warm: #F7F5ED;
+  --card-cream: #F2EFE6;
+  
+  /* Accent Colors */
+  --accent: #D9A441;
+  --accent-hover: #C59335;
+  
+  /* Typography Colors */
+  --text-main: #1E2324;
+  --text-secondary: #5A6E68;
+  
+  /* Border Colors */
+  --border-subtle: rgba(15, 79, 74, 0.08);
+  --border-focus: #0F4F4A;
+  
+  /* System default bindings */
+  --background: var(--background-warm);
+  --foreground: var(--text-main);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  /* Custom Color Utility Bindings */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary-dark: var(--secondary-dark);
+  --color-background-warm: var(--background-warm);
+  --color-card-cream: var(--card-cream);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-text-main: var(--text-main);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-focus: var(--border-focus);
+
+  /* Fonts optimized for elegant / educational feel (Fallback cascade supports both English and Bengali seamlessly) */
+  --font-sans: var(--font-outfit), var(--font-hind-siliguri), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-serif: var(--font-playfair), "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Custom soft, premium shadows for cards, dialogs, etc. */
+  --shadow-premium-sm: 0 2px 8px -1px rgba(15, 79, 74, 0.03), 0 1px 3px -1px rgba(15, 79, 74, 0.02);
+  --shadow-premium: 0 4px 20px -2px rgba(15, 79, 74, 0.05), 0 2px 8px -1px rgba(15, 79, 74, 0.03);
+  --shadow-premium-lg: 0 10px 30px -5px rgba(15, 79, 74, 0.08), 0 4px 12px -2px rgba(15, 79, 74, 0.04);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Global Reset overrides with premium feeling */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-warm);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure interactive transitions default to smooth duration */
+a, button, input, select, textarea {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Typography Scale Hierarchy & Responsive Tuning */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.25rem; /* 36px */
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem; /* 48px */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+h2 {
+  font-size: 1.75rem; /* 28px */
+}
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2.25rem; /* 36px */
+  }
+}
+
+h3 {
+  font-size: 1.5rem; /* 24px */
+}
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.75rem; /* 28px */
+  }
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.625; /* Relaxed leading for comfortable reading */
+  color: var(--text-main);
+}
+
+small {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Reusable Component Visual Style Rules */
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem; /* 12px / rounded-xl */
+  background-color: var(--primary);
+  color: var(--background-warm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  box-shadow: var(--shadow-premium-sm);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-premium);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-secondary:hover {
+  background-color: var(--card-cream);
+}
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  background-color: var(--accent);
+  color: var(--secondary-dark);
+  border: 1px solid transparent;
+  cursor: pointer;
+  box-shadow: var(--shadow-premium-sm);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-accent:hover {
+  background-color: var(--accent-hover);
+  box-shadow: var(--shadow-premium);
+}
+.btn-accent:active {
+  transform: scale(0.98);
+}
+
+/* Cards */
+.card-elegant {
+  background-color: var(--card-cream);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem; /* 16px / rounded-2xl */
+  box-shadow: var(--shadow-premium);
+  padding: 1.5rem; /* p-6 */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.card-elegant:hover {
+  box-shadow: var(--shadow-premium-lg);
+}
+
+/* Inputs */
+.input-elegant {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem; /* 8px / rounded-lg */
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  outline: none;
+  transition: all 0.2s ease;
+}
+.input-elegant:focus {
+  border-color: var(--border-focus);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(15, 79, 74, 0.1);
 }
