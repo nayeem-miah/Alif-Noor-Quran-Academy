@@ -8,12 +8,12 @@ export default function Footer() {
           
           <div className="hidden md:flex items-center justify-between">
             <div className="font-serif text-lg font-bold text-primary">
-              Alif Noor Quran Academy
+              Alif Online Quran Academy
             </div>
             
          
             <div className="text-[11px] lg:text-xs text-text-secondary">
-              © {new Date().getFullYear()} Alif Noor Quran Academy. Guided by Wisdom, Rooted in Tradition.
+              © {new Date().getFullYear()} Alif Online Quran Academy. Guided by Wisdom, Rooted in Tradition.
             </div>
             
             <div className="flex items-center gap-4 text-[11px] lg:text-xs font-medium text-text-secondary">
@@ -30,11 +30,11 @@ export default function Footer() {
           <div className="flex md:hidden flex-col items-center gap-4 text-center">
             
             <div className="font-serif text-lg font-bold text-primary">
-              Alif Noor Quran Academy
+              Alif Online Quran Academy
             </div>
             
             <div className="text-xs text-text-secondary max-w-xs leading-relaxed font-medium">
-              © {new Date().getFullYear()} Alif Noor Quran Academy. <br />Guided by Wisdom, Rooted in Tradition.
+              © {new Date().getFullYear()} Alif Online Quran Academy. <br />Guided by Wisdom, Rooted in Tradition.
             </div>
             
             <div className="flex items-center gap-5 text-xs font-semibold text-text-secondary mt-2">

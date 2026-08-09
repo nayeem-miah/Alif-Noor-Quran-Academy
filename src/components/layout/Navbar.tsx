@@ -5,16 +5,55 @@ import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   const navItems = [
-    { label: "Home", href: "/", active: true },
-    { label: "About", href: "#about", active: false },
-    { label: "Curriculum", href: "#curriculum", active: false },
-    { label: "Benefits", href: "#benefits", active: false },
-    { label: "Testimonials", href: "#testimonials", active: false },
-    { label: "FAQ", href: "#faq", active: false },
+    { label: "Home", href: "/", active: activeSection === "home" },
+    { label: "About", href: "#about", active: activeSection === "about" },
+    { label: "Curriculum", href: "#curriculum", active: activeSection === "curriculum" },
+    { label: "Benefits", href: "#benefits", active: activeSection === "benefits" },
+    { label: "Testimonials", href: "#testimonials", active: activeSection === "testimonials" },
+    { label: "FAQ", href: "#faq", active: activeSection === "faq" },
   ];
 
+  useEffect(() => {
+    const sectionIds = ["about", "curriculum", "benefits", "testimonials", "faq"];
+    
+    const observers = sectionIds.map((id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        {
+          rootMargin: "-25% 0px -55% 0px",
+        }
+      );
+      
+      observer.observe(el);
+      return { observer, el };
+    });
+
+    const handleScroll = () => {
+      if (window.scrollY < 180) {
+        setActiveSection("home");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observers.forEach((obs) => {
+        if (obs) {
+          obs.observer.unobserve(obs.el);
+        }
+      });
+    };
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -63,11 +102,11 @@ export default function Navbar() {
                 
                 <div className="font-serif font-bold text-primary tracking-tight">
                   <span className="hidden md:inline text-lg lg:text-xl transition-colors group-hover:text-primary-hover">
-                    Alif Noor Quran Academy
+                    Alif Online Quran Academy
                   </span>
                   
                   <div className="md:hidden text-[10px] sm:text-xs font-bold leading-none text-primary">
-                    <span>Alif Noor</span>
+                    <span>Alif Online</span>
                     <span className="block mt-0.5">Quran Academy</span>
                   </div>
                 </div>
@@ -143,7 +182,7 @@ export default function Navbar() {
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            <span className="font-serif font-bold text-base sm:text-lg text-primary">Alif Noor Quran Academy</span>
+            <span className="font-serif font-bold text-base sm:text-lg text-primary">Alif Online Quran Academy</span>
           </div>
           
           <button

@@ -30,11 +30,21 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  title: "Alif Noor Quran Academy - Premium Islamic & Quranic Education Platform",
-  description: "Experience a calm, trustworthy, and modern environment to learn and memorize the Holy Quran with certified instructors.",
-  keywords: ["Alif Noor Quran Academy", "Noor Academy", "Learn Quran Online", "Islamic Education", "Quran Memorization", "Tajweed Classes"],
-  authors: [{ name: "Alif Noor Quran Academy Team" }],
-  metadataBase: new URL("https://alifnoor-academy.example.com"),
+  title: "Alif Online Quran Academy | অনলাইন কুরআন ও আরবি শিক্ষা",
+  description: "Alif Online Quran Academy-এ অভিজ্ঞ কুরআন শিক্ষকের মাধ্যমে শিশুদের অনলাইনে কুরআন, তাজবিদ, আরবি ও ইসলামী শিক্ষা শেখানো হয়।",
+  keywords: [
+    "Alif Online Quran Academy",
+    "আলিফ অনলাইন কুরআন একাডেমি",
+    "Online Quran Academy",
+    "Online Quran Classes",
+    "অনলাইন কুরআন শিক্ষা",
+    "শিশুদের কুরআন শিক্ষা",
+    "অনলাইন আরবি শিক্ষা",
+    "কুরআন তাজবিদ",
+    "Online Quran Classes for Kids"
+  ],
+  authors: [{ name: "Alif Online Quran Academy Team" }],
+  metadataBase: new URL("https://alifonline-academy.com"),
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
