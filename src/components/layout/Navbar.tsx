@@ -62,15 +62,13 @@ export default function Navbar() {
                 </svg>
                 
                 <div className="font-serif font-bold text-primary tracking-tight">
-                
-                  <span className="hidden md:inline text-xl lg:text-2xl transition-colors group-hover:text-primary-hover">
-                    Noor Academy
+                  <span className="hidden md:inline text-lg lg:text-xl transition-colors group-hover:text-primary-hover">
+                    Alif Noor Quran Academy
                   </span>
                   
-                  
-                  <div className="md:hidden text-xs sm:text-sm font-bold leading-none text-primary">
-                    <span>Noor</span>
-                    <span className="block mt-0.5">Academy</span>
+                  <div className="md:hidden text-[10px] sm:text-xs font-bold leading-none text-primary">
+                    <span>Alif Noor</span>
+                    <span className="block mt-0.5">Quran Academy</span>
                   </div>
                 </div>
               </Link>
@@ -145,7 +143,7 @@ export default function Navbar() {
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            <span className="font-serif font-bold text-lg text-primary">Noor Academy</span>
+            <span className="font-serif font-bold text-base sm:text-lg text-primary">Alif Noor Quran Academy</span>
           </div>
           
           <button
