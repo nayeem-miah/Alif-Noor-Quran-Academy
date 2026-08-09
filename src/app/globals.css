@@ -55,7 +55,7 @@
 /* Global Reset overrides with premium feeling */
 html,
 body {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
   padding: 0;
   background-color: var(--background-warm);
@@ -214,3 +214,33 @@ small {
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(15, 79, 74, 0.1);
 }
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+

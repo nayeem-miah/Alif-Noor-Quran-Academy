@@ -41,9 +41,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="bn"
-      className={`${outfit.variable} ${playfair.variable} ${jetbrainsMono.variable} ${hindSiliguri.variable} h-full antialiased`}
+      className={`${outfit.variable} ${playfair.variable} ${jetbrainsMono.variable} ${hindSiliguri.variable} min-h-screen antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col bg-background-warm text-text-main">
+      <body 
+        className="min-h-screen flex flex-col bg-background-warm text-text-main"
+        suppressHydrationWarning
+      >
         <Navbar />
         {children}
         <Footer />
