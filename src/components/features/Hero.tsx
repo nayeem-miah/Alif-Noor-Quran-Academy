@@ -77,23 +77,32 @@ export default function Hero() {
 
           {/* Right profile image column */}
           <div className="md:col-span-5 flex justify-center order-1 md:order-2 animate-fade-in relative">
-            <div className="relative">
+            <div className="relative group cursor-pointer">
+              
+              {/* Outer Pulsing Aura Glow */}
+              <div className="absolute inset-0 -m-3 sm:-m-4 md:-m-5 rounded-full bg-[#D9A441]/15 filter blur-xl animate-pulse-glow pointer-events-none" />
+              
+              {/* Outer Rotating Dashed Accent Ring */}
+              <div className="absolute inset-0 -m-2 sm:-m-3 md:-m-4 rounded-full border-2 border-dashed border-[#D9A441]/45 animate-spin-slow pointer-events-none" />
+              
+              {/* Inner Reverse Rotating Ring */}
+              <div className="absolute inset-0 -m-1 sm:-m-1.5 md:-m-2 rounded-full border border-primary/20 animate-spin-reverse-slow pointer-events-none" />
               
               {/* Thick white circular border wrapper */}
-              <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full border-[10px] sm:border-[14px] border-white bg-card-cream shadow-premium-lg overflow-hidden shrink-0">
+              <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full border-[10px] sm:border-[14px] border-white bg-card-cream shadow-premium-lg overflow-hidden shrink-0 transition-all duration-500 group-hover:scale-103 group-hover:rotate-1">
                 <Image 
                   src="/teacher-1.jpg"
                   alt="Quran & Islamic Teacher Profile"
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-106"
                   priority
                 />
               </div>
 
               {/* Floating Certification Card (Visible on Desktop only) */}
-              <div className="hidden md:flex absolute bottom-8 -left-8 z-10 bg-white rounded-2xl border border-border-subtle p-3.5 items-center gap-3 shadow-premium hover:shadow-premium-lg transition-shadow duration-300">
+              <div className="hidden md:flex absolute bottom-8 -left-8 z-10 bg-white rounded-2xl border border-border-subtle p-3.5 items-center gap-3 shadow-premium hover:shadow-premium-lg transition-all duration-300 animate-float-slow group-hover:scale-105">
                 <div className="w-8 h-8 rounded-full bg-[#FAF8F2] border border-[#E3DFD5] flex items-center justify-center shrink-0">
-                  <svg className="w-4.5 h-4.5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="w-4.5 h-4.5 text-accent animate-pulse" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>

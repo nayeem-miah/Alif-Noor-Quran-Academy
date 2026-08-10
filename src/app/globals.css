@@ -299,4 +299,31 @@ small {
   animation: shimmerLight 3s infinite ease-in-out;
 }
 
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reverseSpin {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 15s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: reverseSpin 20s linear infinite;
+}
+
+
 
