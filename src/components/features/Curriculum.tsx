@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { learningCards, secondaryStudies } from "./curriculumData";
 
 export default function Curriculum() {
@@ -16,113 +17,75 @@ export default function Curriculum() {
           </p>
         </div>
 
-        {/* 1. Desktop Layout (Grid Asymmetric) */}
-        <div className="hidden md:grid grid-cols-12 gap-6 mb-12 animate-fade-in-up">
-          
-          {/* Row 1: Three Equal Cards */}
-          {learningCards.slice(0, 3).map((card) => (
+        {/* Course Cards Grid with Illustration Animations */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 animate-fade-in-up">
+          {learningCards.map((card, idx) => (
             <div 
               key={card.id}
-              className="col-span-4 bg-[#FAF8F2] border border-border-subtle rounded-2xl p-6 sm:p-7 flex flex-col items-start shadow-premium-sm hover:shadow-premium hover:bg-card-cream/35 transition-all duration-300"
+              className="bg-[#FAF8F2] border border-border-subtle rounded-2xl overflow-hidden shadow-premium-sm hover:shadow-premium-lg hover:border-primary/30 transition-all duration-300 flex flex-col group hover:-translate-y-2 relative"
             >
-              <div className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/5 border border-primary/10 text-primary mb-5">
-                {card.icon}
-              </div>
-              <h3 className="font-serif text-lg font-bold text-primary text-left">
-                {card.title}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed mt-3.5 font-medium text-left">
-                {card.desc}
-              </p>
-            </div>
-          ))}
+              {/* Illustration Header Container with Animations */}
+              <div className="relative w-full aspect-[4/3] bg-gradient-to-b from-[#F2ECE1] to-[#FAF8F2] flex items-center justify-center p-4 overflow-hidden border-b border-border-subtle/50">
+                
+                {/* Soft Animated Radial Glow Backdrop */}
+                <div className="absolute inset-6 rounded-full bg-[#D9A441]/10 filter blur-xl group-hover:bg-[#D9A441]/25 transition-colors duration-500 animate-pulse-glow pointer-events-none" />
+                
+                {/* Shimmer Light Sweep on Hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
 
-          {/* Row 2: Expanded Makharij Card (col-span-8) */}
-          <div className="col-span-8 bg-[#FAF8F2] border border-border-subtle rounded-2xl p-7 flex gap-6 items-center shadow-premium-sm hover:shadow-premium hover:bg-card-cream/35 transition-all duration-300">
-            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/5 border border-primary/10 shrink-0 text-primary">
-              {learningCards[3].icon}
-            </div>
-            <div className="flex flex-col text-left">
-              <h3 className="font-serif text-lg font-bold text-primary">
-                {learningCards[3].title}
-              </h3>
-              <p className="text-text-secondary text-sm leading-relaxed mt-2.5 font-medium">
-                {learningCards[3].desc}
-              </p>
-            </div>
-          </div>
-
-          {/* Row 2: Normal Namaz Card (col-span-4) */}
-          <div className="col-span-4 bg-[#FAF8F2] border border-border-subtle rounded-2xl p-6 sm:p-7 flex flex-col items-start shadow-premium-sm hover:shadow-premium hover:bg-card-cream/35 transition-all duration-300">
-            <div className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/5 border border-primary/10 text-primary mb-5">
-              {learningCards[4].icon}
-            </div>
-            <h3 className="font-serif text-lg font-bold text-primary text-left">
-              {learningCards[4].title}
-            </h3>
-            <p className="text-text-secondary text-sm leading-relaxed mt-3.5 font-medium text-left">
-              {learningCards[4].desc}
-            </p>
-          </div>
-
-        </div>
-
-        {/* 2. Mobile Layout (2x2 Grid + Full width Namaz Card) */}
-        <div className="flex md:hidden flex-col gap-4 mb-10 animate-fade-in-up">
-          
-          {/* 2x2 Grid for First 4 Cards */}
-          <div className="grid grid-cols-2 gap-4">
-            {learningCards.slice(0, 4).map((card) => (
-              <div 
-                key={card.id}
-                className="bg-[#FAF8F2] border border-border-subtle rounded-2xl p-5 flex flex-col items-center justify-center text-center shadow-premium-sm active:scale-98 transition-transform duration-200"
-              >
-                <div className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/5 border border-primary/10 text-primary mb-3 shrink-0">
-                  {card.icon}
+                {/* Floating Animated Illustration Container */}
+                <div className={`relative w-full h-full transform transition-transform duration-500 group-hover:scale-108 group-hover:rotate-1 ${idx % 2 === 0 ? 'animate-float-slow' : 'animate-float-delayed'}`}>
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-contain drop-shadow-md group-hover:drop-shadow-xl transition-all duration-500"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
-                <h3 className="font-serif text-sm font-bold text-primary leading-tight">
+              </div>
+
+              {/* Content Body */}
+              <div className="p-6 flex flex-col items-center text-center flex-grow">
+                {card.subtitle && (
+                  <span className="text-xs font-semibold text-[#D9A441] bg-[#D9A441]/10 px-3.5 py-1 rounded-full border border-[#D9A441]/20 mb-2 group-hover:bg-[#D9A441] group-hover:text-secondary-dark transition-all duration-300 shadow-sm">
+                    {card.subtitle}
+                  </span>
+                )}
+                
+                <h3 className="font-serif text-xl font-bold text-primary tracking-tight group-hover:text-primary-hover transition-colors duration-200">
                   {card.title}
                 </h3>
+                
+                <p className="text-text-secondary text-sm leading-relaxed mt-2.5 font-medium flex-grow">
+                  {card.desc}
+                </p>
               </div>
-            ))}
-          </div>
-
-          {/* Full-width Card for Namaz (Islam) at the bottom */}
-          <div className="w-full bg-[#FAF8F2] border border-border-subtle rounded-2xl p-6 flex flex-col items-center text-center shadow-premium-sm active:scale-98 transition-transform duration-200">
-            <div className="flex items-center justify-center w-11 h-11 rounded-full bg-primary/5 border border-primary/10 text-primary mb-3">
-              {learningCards[4].icon}
             </div>
-            <h3 className="font-serif text-base font-bold text-primary">
-              {learningCards[4].title}
-            </h3>
-            <p className="text-text-secondary text-xs leading-relaxed mt-2.5 font-medium max-w-xs">
-              {learningCards[4].desc}
-            </p>
-          </div>
-
+          ))}
         </div>
 
-        {/* 3. Highlighted Bottom Panel: "অন্যান্য অত্যাবশ্যকীয় শিক্ষা" */}
-        <div className="w-full bg-primary text-background-warm rounded-2xl sm:rounded-3xl border border-primary/20 pt-5 pb-6 px-5 sm:pt-6 sm:pb-7 sm:px-8 md:pt-7 md:pb-8 md:px-10 shadow-premium-lg animate-fade-in relative overflow-hidden">
+        {/* Highlighted Bottom Panel: "অন্যান্য অত্যাবশ্যকীয় শিক্ষা" */}
+        <div className="w-full bg-primary text-background-warm rounded-2xl sm:rounded-3xl border border-primary/20 pt-6 pb-7 px-6 sm:pt-8 sm:pb-9 sm:px-10 shadow-premium-lg animate-fade-in relative overflow-hidden">
           
           {/* Atmospheric subtle radial glow inside the panel */}
           <div className="absolute right-0 top-0 w-64 h-64 bg-accent/5 rounded-full filter blur-2xl pointer-events-none" />
           
-          <h3 className="font-serif text-lg sm:text-xl font-bold tracking-tight text-left text-background-warm border-b border-background-warm/15 pb-3 mb-5 leading-tight">
-            অন্যান্য অত্যাবশ্যকীয় শিক্ষা
+          <h3 className="font-serif text-lg sm:text-xl font-bold tracking-tight text-left text-background-warm border-b border-background-warm/15 pb-3 mb-5 leading-tight flex items-center gap-2">
+            <span>অন্যান্য অত্যাবশ্যকীয় শিক্ষা</span>
           </h3>
 
-          {/* Grid list items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-6">
+          {/* Grid list items with hover animations */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {secondaryStudies.map((study, idx) => (
               <div 
                 key={idx}
-                className="flex items-center gap-2.5 text-left transition-transform duration-200 hover:translate-x-1"
+                className="flex items-center gap-3 text-left transition-all duration-300 hover:translate-x-1.5 hover:bg-white/12 bg-white/5 p-3.5 rounded-xl border border-white/10 group"
               >
-                <svg className="w-4 h-4 text-accent shrink-0 fill-current" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-accent shrink-0 fill-current group-hover:scale-125 group-hover:rotate-45 transition-transform duration-300" viewBox="0 0 24 24">
                   <path d="M12 2l2.4 5.6 5.6 2.4-5.6 2.4-2.4 5.6-2.4-5.6-5.6-2.4 5.6-2.4z"/>
                 </svg>
-                <span className="text-sm font-semibold text-background-warm/90 leading-tight">
+                <span className="text-sm font-semibold text-background-warm/95 leading-tight">
                   {study}
                 </span>
               </div>
@@ -135,3 +98,5 @@ export default function Curriculum() {
     </section>
   );
 }
+
+
