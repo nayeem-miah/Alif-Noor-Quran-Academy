@@ -47,20 +47,24 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://alifonline-academy.com"),
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+import { LanguageProvider } from "@/context/LanguageContext";
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="bn"
-      className={`${outfit.variable} ${playfair.variable} ${jetbrainsMono.variable} ${hindSiliguri.variable} min-h-screen antialiased`}
+      className={`${outfit.variable} ${playfair.variable} ${jetbrainsMono.variable} ${hindSiliguri.variable} scroll-smooth antialiased`}
       suppressHydrationWarning
     >
       <body 
         className="min-h-screen flex flex-col bg-background-warm text-text-main"
         suppressHydrationWarning
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

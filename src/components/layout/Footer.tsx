@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <>
       <footer className="w-full border-t border-border-subtle bg-background-warm py-8 sm:py-12 mt-auto">
@@ -11,22 +16,23 @@ export default function Footer() {
               Alif Online Quran Academy
             </div>
             
-         
             <div className="text-[11px] lg:text-xs text-text-secondary">
-              © {new Date().getFullYear()} Alif Online Quran Academy. Guided by Wisdom, Rooted in Tradition.
+              {t(
+                `© ${new Date().getFullYear()} আলিফ অনলাইন কুরআন একাডেমি। প্রজ্ঞা ও ঐতিহ্যের আদর্শে পরিচালিত।`,
+                `© ${new Date().getFullYear()} Alif Online Quran Academy. Guided by Wisdom, Rooted in Tradition.`
+              )}
             </div>
             
             <div className="flex items-center gap-4 text-[11px] lg:text-xs font-medium text-text-secondary">
               <Link href="/privacy" className="hover:text-primary transition-colors">
-                Privacy Policy
+                {t("গোপনীয়তা নীতি", "Privacy Policy")}
               </Link>
               <Link href="/terms" className="hover:text-primary transition-colors">
-                Terms of Service
+                {t("ব্যবহারের শর্তাবলী", "Terms of Service")}
               </Link>
             </div>
           </div>
 
-       
           <div className="flex md:hidden flex-col items-center gap-4 text-center">
             
             <div className="font-serif text-lg font-bold text-primary">
@@ -34,16 +40,19 @@ export default function Footer() {
             </div>
             
             <div className="text-xs text-text-secondary max-w-xs leading-relaxed font-medium">
-              © {new Date().getFullYear()} Alif Online Quran Academy. <br />Guided by Wisdom, Rooted in Tradition.
+              {t(
+                `© ${new Date().getFullYear()} আলিফ অনলাইন কুরআন একাডেমি। প্রজ্ঞা ও ঐতিহ্যের আদর্শে পরিচালিত।`,
+                `© ${new Date().getFullYear()} Alif Online Quran Academy. Guided by Wisdom, Rooted in Tradition.`
+              )}
             </div>
             
             <div className="flex items-center gap-5 text-xs font-semibold text-text-secondary mt-2">
               <Link href="/privacy" className="hover:text-primary transition-colors">
-                Privacy Policy
+                {t("গোপনীয়তা নীতি", "Privacy Policy")}
               </Link>
               <span className="text-border-subtle">|</span>
               <Link href="/terms" className="hover:text-primary transition-colors">
-                Terms of Service
+                {t("ব্যবহারের শর্তাবলী", "Terms of Service")}
               </Link>
             </div>
           </div>

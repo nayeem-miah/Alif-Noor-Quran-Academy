@@ -1,9 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
+  const { language, t } = useLanguage();
+
   return (
-    <section className="w-full py-16 sm:py-24 flex items-center justify-center relative overflow-x-hidden">
+    <section className="w-full py-16 sm:py-24 flex items-center justify-center relative overflow-hidden">
       <div className="absolute right-0 top-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/5 rounded-full filter blur-3xl pointer-events-none -z-10 animate-fade-in" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
@@ -13,32 +18,44 @@ export default function Hero() {
           <div className="md:col-span-7 flex flex-col items-center md:items-start text-center md:text-left order-2 md:order-1 animate-fade-in-up">
             {/* Elegant Bismillah */}
             <div className="text-[11px] sm:text-xs font-serif font-medium tracking-wider text-text-secondary mb-3.5 select-none">
-              বিসমিল্লাহির রাহমানির রাহিম
+              {t("বিসমিল্লাহির রাহমানির রাহিম", "In the name of Allah, the Most Gracious, the Most Merciful")}
             </div>
 
             {/* Badge */}
             <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#FAF8F2] border border-[#E3DFD5] text-[#A67C1E] text-xs sm:text-sm font-semibold tracking-wide shadow-premium-sm mb-5 sm:mb-6">
-              শিশুদের জন্য অনলাইন কুরআন শিক্ষা
+              {t("শিশুদের জন্য অনলাইন কুরআন শিক্ষা", "Online Quran Learning for Children")}
             </div>
 
             {/* Main Heading */}
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-secondary-dark leading-tight">
-              শিশুদের জন্য অনলাইন <br />
-              <span className="text-primary block sm:inline mt-1 sm:mt-0">কুরআন</span> ও <span className="text-accent">আরবি শিক্ষক</span>
+              {language === "bn" ? (
+                <>
+                  শিশুদের জন্য অনলাইন <br />
+                  <span className="text-primary block sm:inline mt-1 sm:mt-0">কুরআন</span> ও <span className="text-accent">আরবি শিক্ষক</span>
+                </>
+              ) : (
+                <>
+                  Online <span className="text-primary">Quran</span> & <br />
+                  <span className="text-accent">Arabic Teacher</span> for Kids
+                </>
+              )}
             </h1>
 
             {/* Description */}
             <p className="text-text-secondary text-sm sm:text-base max-w-lg mt-4 sm:mt-5 leading-relaxed font-medium">
-              আসসালামু আলাইকুম — একজন হাফিজ, ক্বারী ও অভিজ্ঞ কুরআন শিক্ষকের কাছ থেকে আপনার সন্তানকে সঠিক তাজউয়ীদ ও আন্তরিকতার সাথে কুরআন শেখান।
+              {t(
+                "আসসালামু আলাইকুম — একজন হাফিজ, ক্বারী ও অভিজ্ঞ কুরআন শিক্ষকের কাছ থেকে আপনার সন্তানকে সঠিক তাজউয়ীদ ও আন্তরিকতার সাথে কুরআন শেখান।",
+                "Assalamu Alaikum — Teach your children the Holy Quran with proper Tajweed and care from a certified Hafiz, Qari & experienced tutor."
+              )}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 sm:gap-4 w-full mt-7 sm:mt-8">
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3.5 text-xs sm:text-sm font-semibold text-background-warm shadow-premium transition-all duration-200 hover:bg-primary-hover active:scale-95 w-full sm:w-auto text-center"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3.5 text-xs sm:text-sm font-semibold text-background-warm shadow-premium transition-all duration-200 hover:bg-primary-hover active:scale-95 w-full sm:w-auto text-center cursor-pointer"
               >
-                ফ্রি ট্রায়াল ক্লাস বুক করুন
+                {t("ফ্রি ট্রায়াল ক্লাস বুক করুন", "Book a Free Trial Class")}
                 <svg 
                   className="w-4 h-4 ml-2 shrink-0 fill-none" 
                   viewBox="0 0 24 24" 
@@ -53,7 +70,7 @@ export default function Hero() {
                 href="https://wa.me/8801852077834"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-[#D9A441] bg-[#FAF8F2] px-6 py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-card-cream active:scale-95 w-full sm:w-auto shadow-premium-sm text-center"
+                className="inline-flex items-center justify-center rounded-full border border-[#D9A441] bg-[#FAF8F2] px-6 py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-card-cream active:scale-95 w-full sm:w-auto shadow-premium-sm text-center cursor-pointer"
               >
                 {/* WhatsApp SVG Icon */}
                 <svg className="w-4.5 h-4.5 mr-2 shrink-0 fill-current" viewBox="0 0 24 24">
@@ -70,13 +87,15 @@ export default function Hero() {
                 <div className="w-8 h-8 rounded-full border-2 border-background-warm bg-primary flex items-center justify-center text-[9px] font-bold text-background-warm shadow-premium-sm">A</div>
                 <div className="w-8 h-8 rounded-full border-2 border-background-warm bg-accent flex items-center justify-center text-[9px] font-bold text-secondary-dark shadow-premium-sm">Q</div>
               </div>
-              <span className="text-xs sm:text-sm text-text-secondary font-semibold">১০০+ অভিভাবক সন্তুষ্ট</span>
+              <span className="text-xs sm:text-sm text-text-secondary font-semibold">
+                {t("১০০+ অভিভাবক সন্তুষ্ট", "100+ Satisfied Parents")}
+              </span>
             </div>
 
           </div>
 
           {/* Right profile image column */}
-          <div className="md:col-span-5 flex justify-center order-1 md:order-2 animate-fade-in relative">
+          <div className="md:col-span-5 flex justify-center order-1 md:order-2 animate-fade-in relative overflow-hidden md:overflow-visible">
             <div className="relative group cursor-pointer">
               
               {/* Outer Pulsing Aura Glow */}
@@ -107,8 +126,8 @@ export default function Hero() {
                   </svg>
                 </div>
                 <div className="text-left leading-tight">
-                  <p className="text-xs font-bold text-primary">Certified</p>
-                  <p className="text-[10px] text-text-secondary font-semibold">Hifz & Quran</p>
+                  <p className="text-xs font-bold text-primary">{t("সার্টিফাইড", "Certified")}</p>
+                  <p className="text-[10px] text-text-secondary font-semibold">{t("হাফিজ ও ক্বারী", "Hifz & Quran")}</p>
                 </div>
               </div>
 

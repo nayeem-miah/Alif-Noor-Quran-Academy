@@ -1,35 +1,55 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 interface Testimonial {
-  quote: string;
-  author: string;
-  relation: string;
-  location: string;
+  quoteBn: string;
+  quoteEn: string;
+  authorBn: string;
+  authorEn: string;
+  relationBn: string;
+  relationEn: string;
+  locationBn: string;
+  locationEn: string;
   avatarText: string;
 }
 
 export default function Testimonials() {
+  const { t } = useLanguage();
+
   const testimonialsList: Testimonial[] = [
     {
-      quote: "আলহামদুলিল্লাহ, শিক্ষক অত্যন্ত ধৈর্যশীল ও আন্তরিক। আমার ছেলের বয়স ৬ বছর, সে খুব আগ্রহ নিয়ে ক্লাস করে। অনলাইনে জুমের স্ক্রিন শেয়ারিংয়ের মাধ্যমে ক্লাস নেওয়াতে মনোযোগ ধরে রাখা অনেক সহজ হয়। আমরা খুবই সন্তুষ্ট!",
-      author: "উম্মে ফাতেমা",
-      relation: "অভিভাবক (মাতা)",
-      location: "লন্ডন, যুক্তরাজ্য",
+      quoteBn: "আলহামদুলিল্লাহ, শিক্ষক অত্যন্ত ধৈর্যশীল ও আন্তরিক। আমার ছেলের বয়স ৬ বছর, সে খুব আগ্রহ নিয়ে ক্লাস করে। অনলাইনে জুমের স্ক্রিন শেয়ারিংয়ের মাধ্যমে ক্লাস নেওয়াতে মনোযোগ ধরে রাখা অনেক সহজ হয়। আমরা খুবই সন্তুষ্ট!",
+      quoteEn: "Alhamdulillah, the teacher is extremely patient and sincere. My 6-year-old son attends classes with great interest. The screen sharing on Zoom makes it very easy to keep him focused. We are highly satisfied!",
+      authorBn: "উম্মে ফাতেমা",
+      authorEn: "Umme Fatema",
+      relationBn: "অভিভাবক (মাতা)",
+      relationEn: "Parent (Mother)",
+      locationBn: "লন্ডন, যুক্তরাজ্য",
+      locationEn: "London, UK",
       avatarText: "UF"
     },
     {
-      quote: "বিদেশে বড় হওয়া বাচ্চাদের বাংলা বা আরবি উচ্চারণ শেখানো বেশ কঠিন। কিন্তু শাকিল ভাইয়ের পাঠদানের সহজ পদ্ধতি আমার মেয়েকে খুব দ্রুত মাখারিজ ও শুদ্ধ কুরআন পাঠ শিখতে সাহায্য করেছে। ওনার শিক্ষকতা প্রশংসনীয়।",
-      author: "আব্দুর রহমান",
-      relation: "অভিভাবক (পিতা)",
-      location: "নিউ ইয়র্ক, যুক্তরাষ্ট্র",
+      quoteBn: "বিদেশে বড় হওয়া বাচ্চাদের বাংলা বা আরবি উচ্চারণ শেখানো বেশ কঠিন। কিন্তু শাকিল ভাইয়ের পাঠদানের সহজ পদ্ধতি আমার মেয়েকে খুব দ্রুত মাখারিজ ও শুদ্ধ কুরআন পাঠ শিখতে সাহায্য করেছে। ওনার শিক্ষকতা প্রশংসনীয়।",
+      quoteEn: "Teaching correct Arabic pronunciation to kids growing up abroad is quite challenging. However, Shakil Bhai's easy teaching methods helped my daughter learn Makharij and correct recitation very quickly.",
+      authorBn: "আব্দুর রহমান",
+      authorEn: "Abdur Rahman",
+      relationBn: "অভিভাবক (পিতা)",
+      relationEn: "Parent (Father)",
+      locationBn: "নিউ ইয়র্ক, যুক্তরাষ্ট্র",
+      locationEn: "New York, USA",
       avatarText: "AR"
     },
     {
-      quote: "প্রতি ক্লাসে পাশে বসে থাকার প্রয়োজন হয় না, উনি নিজ দায়িত্বে মনোযোগ দিয়ে পড়াশোনা করিয়ে নেন। ১-টু-১ ক্লাস হওয়াতে আমার বাচ্চা সম্পূর্ণ ফোকাস করতে পারে। প্রবাসী পরিবারগুলোর জন্য এটি চমৎকার সুযোগ।",
-      author: "ফারহানা আক্তার",
-      relation: "অভিভাবক (মাতা)",
-      location: "টরন্টো, কানাডা",
+      quoteBn: "প্রতি ক্লাসে পাশে বসে থাকার প্রয়োজন হয় না, উনি নিজ দায়িত্বে মনোযোগ দিয়ে পড়াশোনা করিয়ে নেন। ১-টু-১ ক্লাস হওয়াতে আমার বাচ্চা সম্পূর্ণ ফোকাস করতে পারে। প্রবাসী পরিবারগুলোর জন্য এটি চমৎকার সুযোগ।",
+      quoteEn: "I don't need to sit with my child during class; the tutor handles everything responsibly. The 1-to-1 format allows my child to focus completely. This is an excellent service for expat Muslim families.",
+      authorBn: "ফারহানা আক্তার",
+      authorEn: "Farhana Akhter",
+      relationBn: "অভিভাবক (মাতা)",
+      relationEn: "Parent (Mother)",
+      locationBn: "টরন্টো, কানাডা",
+      locationEn: "Toronto, Canada",
       avatarText: "FA"
     }
   ];
@@ -45,14 +65,17 @@ export default function Testimonials() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16 animate-fade-in">
           <span className="text-xs sm:text-sm font-bold text-[#D9A441] bg-[#D9A441]/10 px-4 py-1.5 rounded-full border border-[#D9A441]/20">
-            মতামত • Testimonials
+            {t("মতামত", "Testimonials")}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-secondary-dark mt-4">
-            সন্তোষজনক অভিভাবক ও শিক্ষার্থীদের প্রতিক্রিয়া
+            {t("সন্তোষজনক অভিভাবক ও শিক্ষার্থীদের প্রতিক্রিয়া", "What Satisfied Parents Say About Us")}
           </h2>
           <div className="w-12 h-[3.5px] bg-[#D9A441] mt-3.5 mx-auto rounded-full" />
           <p className="text-text-secondary text-sm sm:text-base font-semibold mt-4 leading-relaxed">
-            বিশ্বের বিভিন্ন দেশের প্রবাসী অভিভাবকদের বাস্তব ও অনুপ্রেরণামূলক মতামত।
+            {t(
+              "বিশ্বের বিভিন্ন দেশের প্রবাসী অভিভাবকদের বাস্তব ও অনুপ্রেরণামূলক মতামত।",
+              "Real and inspiring testimonials from expat parents living in different parts of the world."
+            )}
           </p>
         </div>
 
@@ -73,7 +96,7 @@ export default function Testimonials() {
               <div>
                 {/* Quote Text */}
                 <p className="text-text-secondary text-sm sm:text-sm+ leading-relaxed font-semibold italic text-left relative z-10 pr-4">
-                  "{test.quote}"
+                  &ldquo;{t(test.quoteBn, test.quoteEn)}&rdquo;
                 </p>
               </div>
 
@@ -84,10 +107,10 @@ export default function Testimonials() {
                 </div>
                 <div className="text-left">
                   <h4 className="font-serif text-sm sm:text-base font-bold text-primary leading-tight">
-                    {test.author}
+                    {t(test.authorBn, test.authorEn)}
                   </h4>
                   <p className="text-[10px] sm:text-xs font-semibold text-text-secondary mt-0.5">
-                    {test.relation} — <span className="text-[#D9A441]">{test.location}</span>
+                    {t(test.relationBn, test.relationEn)} — <span className="text-[#D9A441]">{t(test.locationBn, test.locationEn)}</span>
                   </p>
                 </div>
               </div>

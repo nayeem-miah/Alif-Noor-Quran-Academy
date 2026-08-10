@@ -2,22 +2,27 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { language, setLanguage, t } = useLanguage();
 
   const navItems = [
-    { label: "Home", href: "/", active: activeSection === "home" },
-    { label: "About", href: "#about", active: activeSection === "about" },
-    { label: "Curriculum", href: "#curriculum", active: activeSection === "curriculum" },
-    { label: "Benefits", href: "#benefits", active: activeSection === "benefits" },
-    { label: "Testimonials", href: "#testimonials", active: activeSection === "testimonials" },
-    { label: "FAQ", href: "#faq", active: activeSection === "faq" },
+    { label: t("হোম", "Home"), href: "/", active: activeSection === "home" },
+    { label: t("পরিচিতি", "About"), href: "#about", active: activeSection === "about" },
+    { label: t("পাঠ্যক্রম", "Curriculum"), href: "#curriculum", active: activeSection === "curriculum" },
+    { label: t("সুবিধাসমূহ", "Benefits"), href: "#benefits", active: activeSection === "benefits" },
+    { label: t("মতামত", "Testimonials"), href: "#testimonials", active: activeSection === "testimonials" },
+    { label: t("প্রাইসিং", "Pricing"), href: "#pricing", active: activeSection === "pricing" },
+    { label: t("প্রশ্নোত্তর", "FAQ"), href: "#faq", active: activeSection === "faq" },
+    { label: t("যোগাযোগ", "Contact"), href: "#contact", active: activeSection === "contact" },
   ];
 
   useEffect(() => {
-    const sectionIds = ["about", "curriculum", "benefits", "testimonials", "faq"];
+    const sectionIds = ["about", "curriculum", "benefits", "testimonials", "pricing", "faq", "contact"];
+
     
     const observers = sectionIds.map((id) => {
       const el = document.getElementById(id);
@@ -66,7 +71,6 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -83,10 +87,8 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 sm:h-16 items-center justify-between">
             
-            
             <div className="flex items-center">
               <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">
-                
                 <svg 
                   className="w-5 h-5 text-primary shrink-0 md:hidden" 
                   viewBox="0 0 24 24" 
@@ -102,18 +104,17 @@ export default function Navbar() {
                 
                 <div className="font-serif font-bold text-primary tracking-tight">
                   <span className="hidden md:inline text-lg lg:text-xl transition-colors group-hover:text-primary-hover">
-                    Alif Online Quran Academy
+                    {t("আলিফ অনলাইন কুরআন একাডেমি", "Alif Online Quran Academy")}
                   </span>
                   
                   <div className="md:hidden text-[10px] sm:text-xs font-bold leading-none text-primary">
-                    <span>Alif Online</span>
-                    <span className="block mt-0.5">Quran Academy</span>
+                    <span>{t("আলিফ অনলাইন", "Alif Online")}</span>
+                    <span className="block mt-0.5">{t("কুরআন একাডেমি", "Quran Academy")}</span>
                   </div>
                 </div>
               </Link>
             </div>
 
-         
             <nav className="hidden md:flex items-center gap-6 lg:gap-8">
               {navItems.map((item) => (
                 <Link
@@ -130,13 +131,23 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Right side CTA & Three-dot menu */}
+            {/* Right side CTA, Language Toggle & Hamburger Menu */}
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Language Switcher Button */}
+              <button
+                onClick={() => setLanguage(language === "bn" ? "en" : "bn")}
+                className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-border-subtle bg-white/40 hover:bg-card-cream/60 transition-all duration-200 text-[10px] sm:text-xs font-bold text-primary cursor-pointer shadow-premium-sm"
+                title={language === "bn" ? "Switch to English" : "বাংলায় পরিবর্তন করুন"}
+              >
+                <span>🌐</span>
+                <span>{language === "bn" ? "English" : "বাংলা"}</span>
+              </button>
+
               <Link
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-1.5 sm:px-5 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-background-warm shadow-premium-sm transition-all duration-200 hover:bg-primary-hover hover:shadow-premium active:scale-95"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-3 py-1.5 sm:px-5 sm:py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-background-warm shadow-premium-sm transition-all duration-200 hover:bg-primary-hover hover:shadow-premium active:scale-95"
               >
-                Contact Us
+                {t("যোগাযোগ", "Contact")}
               </Link>
 
               {/* Hamburger mobile menu trigger button */}
@@ -147,7 +158,6 @@ export default function Navbar() {
                 aria-expanded={isOpen}
                 aria-label="Open Navigation Menu"
               >
-                {/* Hamburger menu icon SVG */}
                 <svg className="w-6 h-6 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -157,12 +167,14 @@ export default function Navbar() {
           </div>
         </div>
       </header>
+
       <div 
         onClick={() => setIsOpen(false)}
         className={`fixed inset-0 bg-black/40 backdrop-blur-[1px] z-40 transition-opacity duration-300 md:hidden ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />   
+
       <div 
         className={`fixed top-0 right-0 h-full w-64 bg-background-warm border-l border-border-subtle z-50 shadow-premium-lg p-6 flex flex-col transition-transform duration-300 ease-out md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -182,7 +194,7 @@ export default function Navbar() {
               <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
-            <span className="font-serif font-bold text-base sm:text-lg text-primary">Alif Online Quran Academy</span>
+            <span className="font-serif font-bold text-sm text-primary">{t("আলিফ অনলাইন একাডেমি", "Alif Online Academy")}</span>
           </div>
           
           <button
@@ -197,14 +209,13 @@ export default function Navbar() {
           </button>
         </div>
 
-    
-        <nav className="flex flex-col gap-4 mt-8">
+        <nav className="flex flex-col gap-3 mt-8">
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className={`text-sm font-semibold tracking-wide py-2.5 px-4 rounded-xl transition-all duration-200 ${
+              className={`text-sm font-semibold tracking-wide py-2 px-4 rounded-xl transition-all duration-200 ${
                 item.active
                   ? "bg-primary text-background-warm shadow-premium-sm"
                   : "text-text-secondary hover:bg-card-cream/50 hover:text-primary"
@@ -217,7 +228,7 @@ export default function Navbar() {
         
         <div className="mt-auto text-center border-t border-border-subtle pt-6">
           <p className="text-[10px] text-text-secondary">
-            Guided by Wisdom, Rooted in Tradition.
+            {t("জ্ঞানের আলোয় পথ চলা, ঐতিহ্যের শেকড়ে গড়া।", "Guided by Wisdom, Rooted in Tradition.")}
           </p>
         </div>
       </div>

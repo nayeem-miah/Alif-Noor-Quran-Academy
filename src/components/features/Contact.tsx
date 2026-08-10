@@ -1,15 +1,17 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [timezone, setTimezone] = useState("");
   const [age, setAge] = useState("");
-  const [timePref, setTimePref] = useState("সকাল (Morning)");
+  const [timePref, setTimePref] = useState("morning");
   const [submitted, setSubmitted] = useState(false);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
+  const { t } = useLanguage();
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -20,10 +22,26 @@ export default function Contact() {
     setSubmitted(true);
     // Reset form fields
     setName("");
+    // Keep fields reset
     setContact("");
     setTimezone("");
     setAge("");
-    setTimePref("সকাল (Morning)");
+    setTimePref("morning");
+  };
+
+  const getPrefLabel = (val: string) => {
+    switch (val) {
+      case "morning":
+        return t("সকাল (Morning)", "Morning");
+      case "afternoon":
+        return t("দুপুর (Afternoon)", "Afternoon");
+      case "evening":
+        return t("বিকাল (Evening)", "Evening");
+      case "night":
+        return t("রাত (Night)", "Night");
+      default:
+        return t("সকাল (Morning)", "Morning");
+    }
   };
 
   return (
@@ -37,14 +55,17 @@ export default function Contact() {
             {/* Heading */}
             <div className="flex flex-col items-start w-full text-left">
               <h2 className="font-serif text-3xl font-bold tracking-tight text-primary">
-                যোগাযোগ করুন
+                {t("যোগাযোগ করুন", "Contact Us")}
               </h2>
               <div className="w-12 h-[3.5px] bg-[#D9A441] mt-2.5 rounded-full" />
             </div>
 
             {/* Description */}
             <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-medium mt-5 max-w-sm text-left">
-              আপনার কোনো প্রশ্ন থাকলে বা ক্লাস বুক করতে চাইলে নিচের ফর্মটি পূরণ করুন অথবা সরাসরি WhatsApp-এ মেসেজ দিন।
+              {t(
+                "আপনার কোনো প্রশ্ন থাকলে বা ক্লাস বুক করতে চাইলে নিচের ফর্মটি পূরণ করুন অথবা সরাসরি WhatsApp-এ মেসেজ দিন।",
+                "If you have any questions or would like to book a class, fill out the form below or send a message directly on WhatsApp."
+              )}
             </p>
 
             {/* WhatsApp Card */}
@@ -64,10 +85,10 @@ export default function Contact() {
                   WhatsApp
                 </h3>
                 <p className="text-text-secondary text-xs sm:text-sm font-medium mt-1">
-                  সরাসরি কথা বলতে মেসেজ দিন
+                  {t("সরাসরি কথা বলতে মেসেজ দিন", "Message to chat directly")}
                 </p>
                 <span className="text-[#22C55E] text-xs sm:text-sm font-bold mt-2 flex items-center">
-                  মেসেজ পাঠান &rarr;
+                  {t("মেসেজ পাঠান →", "Send Message →")}
                 </span>
               </div>
             </a>
@@ -84,10 +105,10 @@ export default function Contact() {
               </div>
               <div className="flex flex-col">
                 <h3 className="font-serif text-lg font-bold text-primary leading-tight">
-                  Email
+                  {t("ইমেইল", "Email")}
                 </h3>
                 <p className="text-text-secondary text-xs sm:text-sm font-medium mt-1">
-                  বিস্তারিত জানতে ইমেইল করুন
+                  {t("বিস্তারিত জানতে ইমেইল করুন", "Email for detailed inquiries")}
                 </p>
                 <span className="text-primary text-xs sm:text-sm font-semibold mt-2 break-all">
                   sheikhshakibahomd@gmail.com
@@ -108,7 +129,7 @@ export default function Contact() {
 
               {/* Form Heading */}
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-primary text-left mb-6 sm:mb-8">
-                ক্লাস বুকিং ফর্ম
+                {t("ক্লাস বুকিং ফর্ম", "Class Booking Form")}
               </h3>
 
               {submitted ? (
@@ -121,17 +142,20 @@ export default function Contact() {
                   </div>
                   <div className="text-left leading-relaxed">
                     <h4 className="font-bold text-base text-emerald-950 text-center mb-1">
-                      সফলভাবে বুকিং সম্পন্ন হয়েছে!
+                      {t("সফলভাবে বুকিং সম্পন্ন হয়েছে!", "Booking Submitted Successfully!")}
                     </h4>
                     <p className="text-xs sm:text-sm text-emerald-900 text-center font-medium">
-                      আলহামদুলিল্লাহ, আপনার বুকিং অনুরোধটি সফলভাবে জমা দেওয়া হয়েছে! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব ইনশাআল্লাহ।
+                      {t(
+                        "আলহামদুলিল্লাহ, আপনার বুকিং অনুরোধটি সফলভাবে জমা দেওয়া হয়েছে! আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব ইনশাআল্লাহ।",
+                        "Alhamdulillah, your booking request has been successfully submitted! We will contact you soon In sha Allah."
+                      )}
                     </p>
                   </div>
                   <button 
                     onClick={() => setSubmitted(false)}
-                    className="mt-2 text-xs font-bold text-primary underline hover:text-primary-hover focus:outline-none"
+                    className="mt-2 text-xs font-bold text-primary underline hover:text-primary-hover focus:outline-none cursor-pointer"
                   >
-                    নতুন আরেকটি ফর্ম পূরণ করুন
+                    {t("নতুন আরেকটি ফর্ম পূরণ করুন", "Fill out another form")}
                   </button>
                 </div>
               ) : (
@@ -141,13 +165,13 @@ export default function Contact() {
                   {/* Parent Full Name */}
                   <div className="flex flex-col text-left">
                     <label htmlFor="parentName" className="text-xs sm:text-sm font-bold text-primary mb-2">
-                      অভিভাবকের নাম <span className="text-red-500">*</span>
+                      {t("অভিভাবকের নাম", "Parent's Full Name")} <span className="text-red-500">*</span>
                     </label>
                     <input
                       id="parentName"
                       type="text"
                       required
-                      placeholder="আপনার নাম"
+                      placeholder={t("আপনার নাম", "Your Full Name")}
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-white text-text-main placeholder-text-secondary/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200 text-sm font-semibold shadow-premium-sm"
@@ -160,13 +184,13 @@ export default function Contact() {
                     {/* Contact Info (Email or Phone) */}
                     <div className="flex flex-col text-left">
                       <label htmlFor="contactInfo" className="text-xs sm:text-sm font-bold text-primary mb-2">
-                        ইমেইল বা হোয়াটসঅ্যাপ নম্বর <span className="text-red-500">*</span>
+                        {t("ইমেইল বা হোয়াটসঅ্যাপ নম্বর", "Email or WhatsApp Number")} <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="contactInfo"
                         type="text"
                         required
-                        placeholder="contact@..."
+                        placeholder="e.g. name@mail.com / +12345"
                         value={contact}
                         onChange={(e) => setContact(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-white text-text-main placeholder-text-secondary/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200 text-sm font-semibold shadow-premium-sm"
@@ -176,13 +200,13 @@ export default function Contact() {
                     {/* Timezone */}
                     <div className="flex flex-col text-left">
                       <label htmlFor="timezone" className="text-xs sm:text-sm font-bold text-primary mb-2">
-                        দেশ (Timezone) <span className="text-red-500">*</span>
+                        {t("দেশ (Timezone)", "Country (Timezone)")} <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="timezone"
                         type="text"
                         required
-                        placeholder="USA, UK, etc."
+                        placeholder="e.g. USA, UK, Canada"
                         value={timezone}
                         onChange={(e) => setTimezone(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-white text-text-main placeholder-text-secondary/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200 text-sm font-semibold shadow-premium-sm"
@@ -192,13 +216,13 @@ export default function Contact() {
                     {/* Child Age */}
                     <div className="flex flex-col text-left">
                       <label htmlFor="childAge" className="text-xs sm:text-sm font-bold text-primary mb-2">
-                        সন্তানের বয়স <span className="text-red-500">*</span>
+                        {t("সন্তানের বয়স", "Child's Age")} <span className="text-red-500">*</span>
                       </label>
                       <input
                         id="childAge"
                         type="text"
                         required
-                        placeholder="যেমন: ৮"
+                        placeholder={t("যেমন: ৮ বছর", "e.g. 8 years")}
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-white text-text-main placeholder-text-secondary/60 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200 text-sm font-semibold shadow-premium-sm"
@@ -208,7 +232,7 @@ export default function Contact() {
                     {/* Time Preference dropdown selection */}
                     <div className="flex flex-col text-left">
                       <label className="text-xs sm:text-sm font-bold text-primary mb-2">
-                        পছন্দের সময় <span className="text-red-500">*</span>
+                        {t("পছন্দের সময়", "Preferred Time")} <span className="text-red-500">*</span>
                       </label>
                       <div className="relative">
                         <button
@@ -216,7 +240,7 @@ export default function Contact() {
                           onClick={() => setIsOpenSelect(!isOpenSelect)}
                           className="w-full px-4 py-3 rounded-xl border border-border-subtle bg-white text-text-main text-sm font-semibold flex items-center justify-between cursor-pointer focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all duration-200 text-left shadow-premium-sm"
                         >
-                          <span>{timePref}</span>
+                          <span>{getPrefLabel(timePref)}</span>
                           <svg className={`w-5 h-5 text-primary transition-transform duration-200 ${isOpenSelect ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                           </svg>
@@ -229,10 +253,10 @@ export default function Contact() {
                             
                             <div className="absolute bottom-full left-0 w-full mb-2 bg-[#FDFCF9] border border-border-subtle rounded-xl shadow-premium-lg z-20 py-1 overflow-hidden animate-fade-in">
                               {[
-                                "সকাল (Morning)",
-                                "দুপুর (Afternoon)",
-                                "বিকাল (Evening)",
-                                "রাত (Night)"
+                                "morning",
+                                "afternoon",
+                                "evening",
+                                "night"
                               ].map((option) => (
                                 <button
                                   key={option}
@@ -243,7 +267,7 @@ export default function Contact() {
                                   }}
                                   className={`w-full px-4 py-2.5 text-sm text-text-main text-left cursor-pointer transition-colors duration-150 hover:bg-[#F2EFE6] font-semibold ${timePref === option ? 'bg-[#F2EFE6] text-primary' : ''}`}
                                 >
-                                  {option}
+                                  {option === "morning" ? t("সকাল (Morning)", "Morning") : option === "afternoon" ? t("দুপুর (Afternoon)", "Afternoon") : option === "evening" ? t("বিকাল (Evening)", "Evening") : t("রাত (Night)", "Night")}
                                 </button>
                               ))}
                             </div>
@@ -259,7 +283,7 @@ export default function Contact() {
                     type="submit"
                     className="w-full py-3.5 sm:py-4 bg-primary text-background-warm font-bold rounded-full shadow-premium hover:bg-primary-hover active:scale-98 transition-all duration-200 mt-2 cursor-pointer text-sm sm:text-base"
                   >
-                    সাবমিট করুন
+                    {t("সাবমিট করুন", "Submit Booking")}
                   </button>
 
                 </form>

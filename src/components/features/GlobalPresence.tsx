@@ -1,5 +1,7 @@
 "use client";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 interface GlobalStudent {
   id: string;
   countryNameBn: string;
@@ -190,36 +192,24 @@ export default function GlobalPresence() {
       id: "europe",
       countryNameBn: "ইউরোপীয় দেশসমূহ",
       countryNameEn: "European Countries",
-      languageBn: "ইউরোপের বিভিন্ন দেশ",
-      languageEn: "European Countries & More",
+      languageBn: "ইংরেজি ও বাংলাভাষী পরিবার",
+      languageEn: "Multilingual Families",
       flagSvg: (
         <svg viewBox="0 0 60 60" className="w-full h-full">
-          <clipPath id="circleView">
+          <clipPath id="circleViewEU">
             <circle cx="30" cy="30" r="30" />
           </clipPath>
-          <g clipPath="url(#circleView)">
-            {/* EU Flag */}
+          <g clipPath="url(#circleViewEU)">
+            {/* European Flag background */}
             <rect width="60" height="60" fill="#003399" />
-            {/* Circle of stars */}
-            <circle cx="30" cy="30" r="16" stroke="none" fill="none" />
-            {[...Array(12)].map((_, i) => {
-              const angle = (i * 30 * Math.PI) / 180;
-              const x = 30 + 16 * Math.cos(angle);
-              const y = 30 + 16 * Math.sin(angle);
-              return (
-                <polygon
-                  key={i}
-                  points="0, -2.5 0.7, -0.7 2.4, -0.7 1, 0.4 1.5, 2.2 0, 1 -1.5, 2.2 -1, 0.4 -2.4, -0.7 -0.7, -0.7"
-                  fill="#FFCC00"
-                  transform={`translate(${x}, ${y}) scale(0.8)`}
-                />
-              );
-            })}
+            <circle cx="30" cy="30" r="18" fill="none" stroke="#FFCC00" strokeWidth="2.5" strokeDasharray="1 7" />
           </g>
         </svg>
       )
     }
   ];
+
+  const { t } = useLanguage();
 
   return (
     <section id="global-presence" className="w-full py-16 sm:py-24 bg-card-cream/35 flex items-center justify-center border-t border-border-subtle relative overflow-x-hidden">
@@ -232,11 +222,14 @@ export default function GlobalPresence() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20 animate-fade-in">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-secondary-dark mt-4">
-            যেসব দেশের শিক্ষার্থীদের আমি পড়াই
+            {t("যেসব দেশের শিক্ষার্থীদের আমি পড়াই", "Countries of My Online Students")}
           </h2>
           <div className="w-12 h-[3.5px] bg-[#D9A441] mt-3.5 mx-auto rounded-full" />
           <p className="text-text-secondary text-sm sm:text-base font-semibold mt-4 leading-relaxed">
-            যুক্তরাজ্য, যুক্তরাষ্ট্র, ইউরোপ সহ বিশ্বের বিভিন্ন দেশে বসবাসরত শিক্ষার্থীদের অনলাইনে তাজউইদ ও শুদ্ধ উচ্চারণে কুরআন শিক্ষা দিয়ে আসছি।
+            {t(
+              "যুক্তরাজ্য, যুক্তরাষ্ট্র, ইউরোপ সহ বিশ্বের বিভিন্ন দেশে বসবাসরত শিক্ষার্থীদের অনলাইনে তাজউইদ ও শুদ্ধ উচ্চারণে কুরআন শিক্ষা দিয়ে আসছি।",
+              "Teaching Quran recitation & Tajweed online to children residing in UK, USA, Canada, Australia, and European countries."
+            )}
           </p>
         </div>
 
@@ -271,14 +264,14 @@ export default function GlobalPresence() {
               {/* Country & Language Text */}
               <div className="space-y-1">
                 <h3 className="font-serif text-base sm:text-lg font-bold text-primary">
-                  {student.countryNameBn}
+                  {t(student.countryNameBn, student.countryNameEn)}
                 </h3>
-                <p className="text-[10px] sm:text-xs font-bold text-text-secondary uppercase tracking-wider">
-                  {student.countryNameEn}
+                <p className="text-[10px] sm:text-xs font-bold text-text-secondary/50 uppercase tracking-wider">
+                  {t(student.countryNameEn, student.countryNameBn)}
                 </p>
                 <div className="pt-2">
                   <span className="text-[10px] sm:text-xs font-bold text-[#D9A441] bg-[#D9A441]/10 px-2.5 py-0.5 rounded-full border border-[#D9A441]/25">
-                    {student.languageBn}
+                    {t(student.languageBn, student.languageEn)}
                   </span>
                 </div>
               </div>

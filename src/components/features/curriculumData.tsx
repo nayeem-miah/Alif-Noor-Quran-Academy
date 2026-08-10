@@ -2,20 +2,27 @@ import { ReactNode } from "react";
 
 export interface LearningCard {
   id: string;
-  title: string;
-  subtitle?: string;
-  desc: string;
+  titleBn: string;
+  titleEn: string;
+  subtitleBn?: string;
+  subtitleEn?: string;
+  descBn: string;
+  descEn: string;
   image: string;
   icon?: ReactNode;
-  items?: string[];
+  itemsBn?: string[];
+  itemsEn?: string[];
 }
 
 export const learningCards: LearningCard[] = [
   {
     id: "qaida",
-    title: "নূরানী কায়দা",
-    subtitle: "বেসিক নূরানী কায়দা",
-    desc: "আরবি হরফ চেনা এবং সঠিক উচ্চারণের প্রথম মৌলিক ধাপ।",
+    titleBn: "নূরানী কায়দা",
+    titleEn: "Noorani Qaida",
+    subtitleBn: "বেসিক নূরানী কায়দা",
+    subtitleEn: "Basic Noorani Qaida",
+    descBn: "আরবি হরফ চেনা এবং সঠিক উচ্চারণের প্রথম মৌলিক ধাপ।",
+    descEn: "The fundamental first step to recognizing Arabic letters and correct pronunciation.",
     image: "/images/qaida.png",
     icon: (
       <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
@@ -25,9 +32,12 @@ export const learningCards: LearningCard[] = [
   },
   {
     id: "quran",
-    title: "নাজেরা (কুরআন তিলাওয়াত)",
-    subtitle: "সহীহশুদ্ধভাবে অনর্গল কুরআন তেলাওয়াত",
-    desc: "সাবলীলভাবে ও তাজওয়ীদ সহকারে পবিত্র কুরআন পাঠ।",
+    titleBn: "নাজেরা (কুরআন তিলাওয়াত)",
+    titleEn: "Quran Recitation",
+    subtitleBn: "সহীহশুদ্ধভাবে অনর্গল কুরআন তেলাওয়াত",
+    subtitleEn: "Fluent Quran Recitation",
+    descBn: "সাবলীলভাবে ও তাজওয়ীদ সহকারে পবিত্র কুরআন পাঠ।",
+    descEn: "Fluent and smooth reading of the Holy Quran with proper Tajweed rules.",
     image: "/images/quran.png",
     icon: (
       <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
@@ -37,9 +47,12 @@ export const learningCards: LearningCard[] = [
   },
   {
     id: "makharij",
-    title: "মাখারিজ সংশোধন",
-    subtitle: "সঠিক উচ্চারণ ও তাজউইদ",
-    desc: "হরফগুলো কোথা থেকে উচ্চারিত হয় তার সঠিক জ্ঞান এবং ত্রুটি সংশোধন।",
+    titleBn: "মাখারিজ সংশোধন",
+    titleEn: "Makharij Correction",
+    subtitleBn: "সঠিক উচ্চারণ ও তাজউইদ",
+    subtitleEn: "Correct Pronunciation & Tajweed",
+    descBn: "হরফগুলো কোথা থেকে উচ্চারিত হয় তার সঠিক জ্ঞান এবং ত্রুটি সংশোধন।",
+    descEn: "Detailed learning of letter origins and rectifying recitation mistakes.",
     image: "/images/makharij.png",
     icon: (
       <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
@@ -49,9 +62,12 @@ export const learningCards: LearningCard[] = [
   },
   {
     id: "arabic",
-    title: "আরবি পড়া",
-    subtitle: "কুরআনের ভাষা শিক্ষা",
-    desc: "কুরআনের ভাষা বুঝতে সহায়ক প্রাথমিক আরবি পঠন।",
+    titleBn: "আরবি পড়া",
+    titleEn: "Arabic Reading",
+    subtitleBn: "কুরআনের ভাষা শিক্ষা",
+    subtitleEn: "Language of the Quran",
+    descBn: "কুরআনের ভাষা বুঝতে সহায়ক প্রাথমিক আরবি পঠন।",
+    descEn: "Basic Arabic reading skills to help understand and connect with the Quran.",
     image: "/images/arabic.png",
     icon: (
       <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
@@ -61,9 +77,12 @@ export const learningCards: LearningCard[] = [
   },
   {
     id: "namaz",
-    title: "নামাজ শিক্ষা",
-    subtitle: "ব্যবহারিক নামাজ ও দোয়া",
-    desc: "ব্যবহারিক পদ্ধতিতে সঠিক নামাজ আদায়ের নিয়মাবলী।",
+    titleBn: "নামাজ শিক্ষা",
+    titleEn: "Salah Education",
+    subtitleBn: "ব্যবহারিক নামাজ ও দোয়া",
+    subtitleEn: "Practical Prayer & Duas",
+    descBn: "ব্যবহারিক পদ্ধতিতে সঠিক নামাজ আদায়ের নিয়মাবলী।",
+    descEn: "Practical, step-by-step guidance on how to perform prayers correctly.",
     image: "/images/namaz.png",
     icon: (
       <svg className="w-5.5 h-5.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.2">
@@ -73,22 +92,25 @@ export const learningCards: LearningCard[] = [
   },
   {
     id: "essential",
-    title: "অন্যান্য অত্যাবশ্যকীয় শিক্ষা",
-    subtitle: "মৌলিক ইসলামী জ্ঞান",
-    desc: "সূরা ও দোয়া মুখস্থ, ছয় কালিমা, দৈনন্দিন মাসনুন আমল এবং প্রাথমিক আকাইদ শিক্ষা।",
+    titleBn: "অন্যান্য অত্যাবশ্যকীয় শিক্ষা",
+    titleEn: "Essential Studies",
+    subtitleBn: "মৌলিক ইসলামী জ্ঞান",
+    subtitleEn: "Basic Islamic Knowledge",
+    descBn: "সূরা ও দোয়া মুখস্থ, ছয় কালিমা, দৈনন্দিন মাসনুন আমল এবং প্রাথমিক আকাইদ শিক্ষা।",
+    descEn: "Memorizing Surahs & Duas, 6 Kalimahs, daily prayers, and basic Islamic manners.",
     image: "/images/essential.png",
-    items: [
+    itemsBn: [
       "সূরা ও দোয়া মুখস্থ",
       "ছয় কালিমা",
       "দৈনন্দিন দোয়া ও মাসনুন আমল",
       "প্রাথমিক ইসলামী জ্ঞান (আকাইদ)"
+    ],
+    itemsEn: [
+      "Memorizing Surahs & Duas",
+      "Six Kalimahs",
+      "Daily Prayers & Sunnah acts",
+      "Basic Islamic Creed (Aqidah)"
     ]
   }
 ];
 
-export const secondaryStudies: string[] = [
-  "সূরা ও দোয়া মুখস্থ",
-  "ছয় কালিমা",
-  "দৈনন্দিন দোয়া ও মাসনুন আমল",
-  "প্রাথমিক ইসলামী জ্ঞান (আকাইদ)"
-];
