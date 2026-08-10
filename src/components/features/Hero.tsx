@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="w-full py-10 sm:py-16 md:py-24 flex items-center justify-center relative overflow-x-hidden">
+    <section className="w-full py-16 sm:py-24 flex items-center justify-center relative overflow-x-hidden">
       <div className="absolute right-0 top-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-primary/5 rounded-full filter blur-3xl pointer-events-none -z-10 animate-fade-in" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
@@ -50,7 +50,7 @@ export default function Hero() {
               </Link>
 
               <Link
-                href="https://wa.me/..."
+                href="https://wa.me/8801852077834"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-[#D9A441] bg-[#FAF8F2] px-6 py-3.5 text-xs sm:text-sm font-semibold text-primary transition-all duration-200 hover:bg-card-cream active:scale-95 w-full sm:w-auto shadow-premium-sm text-center"

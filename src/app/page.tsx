@@ -1,8 +1,11 @@
 import Hero from "@/components/features/Hero";
 import About from "@/components/features/About";
 import Curriculum from "@/components/features/Curriculum";
+import Benefits from "@/components/features/Benefits";
 import GlobalPresence from "@/components/features/GlobalPresence";
 import Pricing from "@/components/features/Pricing";
+import Testimonials from "@/components/features/Testimonials";
+import FAQ from "@/components/features/FAQ";
 import Contact from "@/components/features/Contact";
 
 export default function Home() {
@@ -11,11 +14,15 @@ export default function Home() {
       <Hero />
       <About />
       <Curriculum />
+      <Benefits />
       <GlobalPresence />
       <Pricing />
+      <Testimonials />
+      <FAQ />
       <Contact />
     </main>
   );
 }
+
 
 
