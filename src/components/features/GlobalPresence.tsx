@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface GlobalStudent {
@@ -126,8 +127,8 @@ export default function GlobalPresence() {
     },
     {
       id: "bangladesh",
-      countryNameBn: "বাংলাদেশ",
-      countryNameEn: "Bangladesh",
+      countryNameBn: "বাংলাদেশ (সিলেট)",
+      countryNameEn: "Sylhet, Bangladesh",
       languageBn: "বাংলা ও সিলেটি পরিবার",
       languageEn: "Bengali & Sylheti Families",
       flagSvg: (
@@ -219,6 +220,26 @@ export default function GlobalPresence() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full relative z-10">
         
+        {/* Top Centered Illustration */}
+        <div className="flex justify-center mb-10 sm:mb-12 animate-fade-in">
+          <div className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-square rounded-3xl border border-border-subtle bg-gradient-to-b from-[#F2ECE1] to-[#FAF8F2] p-6 shadow-premium flex items-center justify-center overflow-hidden group hover:shadow-premium-lg transition-all duration-300">
+            <div className="absolute inset-8 rounded-full bg-[#D9A441]/10 filter blur-xl group-hover:bg-[#D9A441]/25 transition-colors duration-500 animate-pulse-glow pointer-events-none" />
+            
+            {/* Shimmer Sweep on Hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+
+            <div className="relative w-full h-full transform transition-transform duration-500 group-hover:scale-105 animate-float-slow">
+              <Image
+                src="/images/global_students.png"
+                alt={t("অনলাইন শিক্ষার্থীদের বৈশ্বিক উপস্থিতি", "Global Presence of Online Students")}
+                fill
+                className="object-contain drop-shadow-md group-hover:drop-shadow-xl transition-all duration-500"
+                sizes="(max-width: 640px) 100vw, 360px"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20 animate-fade-in">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-secondary-dark mt-4">

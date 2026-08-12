@@ -31,8 +31,8 @@ export default function Testimonials() {
       avatarText: "UF"
     },
     {
-      quoteBn: "বিদেশে বড় হওয়া বাচ্চাদের বাংলা বা আরবি উচ্চারণ শেখানো বেশ কঠিন। কিন্তু শাকিল ভাইয়ের পাঠদানের সহজ পদ্ধতি আমার মেয়েকে খুব দ্রুত মাখারিজ ও শুদ্ধ কুরআন পাঠ শিখতে সাহায্য করেছে। ওনার শিক্ষকতা প্রশংসনীয়।",
-      quoteEn: "Teaching correct Arabic pronunciation to kids growing up abroad is quite challenging. However, Shakil Bhai's easy teaching methods helped my daughter learn Makharij and correct recitation very quickly.",
+      quoteBn: "বিদেশে বড় হওয়া বাচ্চাদের বাংলা বা আরবি উচ্চারণ শেখানো বেশ কঠিন। কিন্তু শাকিব ভাইয়ের পাঠদানের সহজ পদ্ধতি আমার মেয়েকে খুব দ্রুত মাখারিজ ও শুদ্ধ কুরআন পাঠ শিখতে সাহায্য করেছে। ওনার শিক্ষকতা প্রশংসনীয়।",
+      quoteEn: "Teaching correct Arabic pronunciation to kids growing up abroad is quite challenging. However, Shakib Bhai's easy teaching methods helped my daughter learn Makharij and correct recitation very quickly.",
       authorBn: "আব্দুর রহমান",
       authorEn: "Abdur Rahman",
       relationBn: "অভিভাবক (পিতা)",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface PricingPlan {
@@ -117,98 +118,155 @@ export default function Pricing() {
           </p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 animate-fade-in-up items-stretch">
-          {plans.map((plan) => {
-            const planName = t(plan.nameBn, plan.nameEn);
-            const planFeatures = language === "bn" ? plan.featuresBn : plan.featuresEn;
-            const formattedPrice = language === "bn" ? plan.price.toLocaleString("bn-BD") : plan.price.toLocaleString("en-US");
-            const formattedOriginal = plan.originalPrice ? (language === "bn" ? plan.originalPrice.toLocaleString("bn-BD") : plan.originalPrice.toLocaleString("en-US")) : "";
-            const formattedSave = plan.originalPrice ? (language === "bn" ? (plan.originalPrice - plan.price).toLocaleString("bn-BD") : (plan.originalPrice - plan.price).toLocaleString("en-US")) : "";
-            const planMsg = t(plan.whatsappMsgBn, plan.whatsappMsgEn);
+        {/* Split Layout: Pricing Grid (left) & Trial Illustration Card (right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12 animate-fade-in-up items-stretch">
+          {/* Pricing Cards Grid (Left 9 cols) */}
+          <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+            {plans.map((plan) => {
+              const planName = t(plan.nameBn, plan.nameEn);
+              const planFeatures = language === "bn" ? plan.featuresBn : plan.featuresEn;
+              const formattedPrice = language === "bn" ? plan.price.toLocaleString("bn-BD") : plan.price.toLocaleString("en-US");
+              const formattedOriginal = plan.originalPrice ? (language === "bn" ? plan.originalPrice.toLocaleString("bn-BD") : plan.originalPrice.toLocaleString("en-US")) : "";
+              const formattedSave = plan.originalPrice ? (language === "bn" ? (plan.originalPrice - plan.price).toLocaleString("bn-BD") : (plan.originalPrice - plan.price).toLocaleString("en-US")) : "";
+              const planMsg = t(plan.whatsappMsgBn, plan.whatsappMsgEn);
 
-            return (
-              <div
-                key={plan.id}
-                className={`bg-[#FAF8F2] border rounded-3xl overflow-hidden p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-2 relative ${
-                  plan.isPopular 
-                    ? "border-[#D9A441] shadow-premium-lg ring-1 ring-[#D9A441]/30" 
-                    : "border-border-subtle shadow-premium-sm hover:shadow-premium hover:border-primary/20"
-                }`}
-              >
-                {plan.isPopular && (
-                  <span className="absolute top-4 right-4 bg-[#D9A441] text-secondary-dark text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider shadow-sm animate-pulse">
-                    {t("জনপ্রিয়", "Popular")}
-                  </span>
-                )}
-
-                <div>
-                  {/* Plan Header */}
-                  <div className="border-b border-border-subtle/50 pb-5 mb-6 text-left">
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-primary">
-                      {planName}
-                    </h3>
-                    <p className="text-xs font-bold text-text-secondary/55 uppercase tracking-wider mt-1">
-                      {t(plan.nameEn, plan.nameBn)}
-                    </p>
-                    
-                    {/* Pricing info */}
-                    <div className="mt-4 flex items-baseline gap-2">
-                      <span className="text-4xl font-serif font-black text-primary">
-                        ৳{formattedPrice}
-                      </span>
-                      <span className="text-xs sm:text-sm font-semibold text-text-secondary">
-                        {t("/ প্রতি মাস", "/ Month")}
-                      </span>
-                    </div>
-
-                    {plan.originalPrice && (
-                      <div className="mt-1 flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
-                        <span className="text-text-secondary/70 line-through">
-                          ৳{formattedOriginal}
-                        </span>
-                        <span className="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100 text-[11px] font-bold">
-                          {t(`৳${formattedSave} সাশ্রয়`, `Save ৳${formattedSave}`)}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-3.5 mb-8">
-                    {planFeatures.map((feature, idx) => (
-                      <div key={idx} className="flex items-center gap-3 text-left">
-                        <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                          <svg className="w-3.5 h-3.5 text-primary stroke-current" fill="none" strokeWidth="3" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                          </svg>
-                        </div>
-                        <span className="text-xs sm:text-sm font-semibold text-text-main">
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Button */}
-                <Link
-                  href={`https://wa.me/8801852077834?text=${encodeURIComponent(planMsg)}`}
-                  target="_blank"
-                  className={`w-full py-3.5 px-6 rounded-xl font-bold text-center text-xs sm:text-sm shadow-premium-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 ${
-                    plan.isPopular
-                      ? "bg-primary text-background-warm hover:bg-primary-hover hover:scale-[1.02] active:scale-98"
-                      : "bg-[#D9A441] text-secondary-dark hover:bg-[#C59335] hover:scale-[1.02] active:scale-98"
+              return (
+                <div
+                  key={plan.id}
+                  className={`bg-[#FAF8F2] border rounded-3xl overflow-hidden p-6 sm:p-8 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-2 relative ${
+                    plan.isPopular 
+                      ? "border-[#D9A441] shadow-premium-lg ring-1 ring-[#D9A441]/30" 
+                      : "border-border-subtle shadow-premium-sm hover:shadow-premium hover:border-primary/20"
                   }`}
                 >
-                  <span>{t("ভর্তি হতে যোগাযোগ করুন", "Enroll via WhatsApp")}</span>
-                  <svg className="w-4 h-4 shrink-0 fill-current" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.729-1.46L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.905-6.99C16.488 1.876 14.012.842 11.371.841 5.937.841 1.512 5.26 1.508 10.7c-.001 1.737.457 3.43 1.32 4.938L1.86 20.198l4.787-1.254zM17.487 14.4c-.326-.163-1.93-.953-2.229-1.062-.3-.11-.518-.163-.735.163-.218.327-.844 1.062-1.034 1.28-.19.218-.38.245-.706.082-1.157-.578-2.062-1.012-2.883-2.422-.22-.377.22-.35.63-.1.368-.224.408-.27.61-.408.203-.136.102-.27-.051-.571-.153-.3-.735-1.77-.999-2.408-.266-.643-.538-.553-.735-.559-.19-.007-.408-.008-.626-.008-.218 0-.571.082-.87.408-.3.326-1.14 1.116-1.14 2.72 0 1.605 1.169 3.159 1.328 3.377.16.218 2.3 3.513 5.572 4.928.778.337 1.387.538 1.86.689.782.248 1.493.213 2.056.129.627-.094 1.93-.79 2.2-1.554.273-.764.273-1.417.19-1.554-.082-.137-.3-.218-.626-.38z" />
-                  </svg>
-                </Link>
+                  {plan.isPopular && (
+                    <span className="absolute top-4 right-4 bg-[#D9A441] text-secondary-dark text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider shadow-sm animate-pulse">
+                      {t("জনপ্রিয়", "Popular")}
+                    </span>
+                  )}
+
+                  <div>
+                    {/* Plan Header */}
+                    <div className="border-b border-border-subtle/50 pb-5 mb-6 text-left">
+                      <h3 className="font-serif text-lg sm:text-xl font-bold text-primary">
+                        {planName}
+                      </h3>
+                      <p className="text-xs font-bold text-text-secondary/55 uppercase tracking-wider mt-1">
+                        {t(plan.nameEn, plan.nameBn)}
+                      </p>
+                      
+                      {/* Pricing info */}
+                      <div className="mt-4 flex items-baseline gap-2">
+                        <span className="text-4xl font-serif font-black text-primary">
+                          ৳{formattedPrice}
+                        </span>
+                        <span className="text-xs sm:text-sm font-semibold text-text-secondary">
+                          {t("/ প্রতি মাস", "/ Month")}
+                        </span>
+                      </div>
+
+                      {plan.originalPrice && (
+                        <div className="mt-1 flex items-center gap-1.5 text-xs sm:text-sm font-semibold">
+                          <span className="text-text-secondary/70 line-through">
+                            ৳{formattedOriginal}
+                          </span>
+                          <span className="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-100 text-[11px] font-bold">
+                            {t(`৳${formattedSave} সাশ্রয়`, `Save ৳${formattedSave}`)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Features List */}
+                    <div className="space-y-3.5 mb-8">
+                      {planFeatures.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-3 text-left">
+                          <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                            <svg className="w-3.5 h-3.5 text-primary stroke-current" fill="none" strokeWidth="3" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                          </div>
+                          <span className="text-xs sm:text-sm font-semibold text-text-main">
+                            {feature}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  <Link
+                    href={`https://wa.me/8801852077834?text=${encodeURIComponent(planMsg)}`}
+                    target="_blank"
+                    className={`w-full py-3.5 px-6 rounded-xl font-bold text-center text-xs sm:text-sm shadow-premium-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 ${
+                      plan.isPopular
+                        ? "bg-primary text-background-warm hover:bg-primary-hover hover:scale-[1.02] active:scale-98"
+                        : "bg-[#D9A441] text-secondary-dark hover:bg-[#C59335] hover:scale-[1.02] active:scale-98"
+                    }`}
+                  >
+                    <span>{t("ভর্তি হতে যোগাযোগ করুন", "Enroll via WhatsApp")}</span>
+                    <svg className="w-4 h-4 shrink-0 fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.503-5.729-1.46L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.03-5.115-2.905-6.99C16.488 1.876 14.012.842 11.371.841 5.937.841 1.512 5.26 1.508 10.7c-.001 1.737.457 3.43 1.32 4.938L1.86 20.198l4.787-1.254zM17.487 14.4c-.326-.163-1.93-.953-2.229-1.062-.3-.11-.518-.163-.735.163-.218.327-.844 1.062-1.034 1.28-.19.218-.38.245-.706.082-1.157-.578-2.062-1.012-2.883-2.422-.22-.377.22-.35.63-.1.368-.224.408-.27.61-.408.203-.136.102-.27-.051-.571-.153-.3-.735-1.77-.999-2.408-.266-.643-.538-.553-.735-.559-.19-.007-.408-.008-.626-.008-.218 0-.571.082-.87.408-.3.326-1.14 1.116-1.14 2.72 0 1.605 1.169 3.159 1.328 3.377.16.218 2.3 3.513 5.572 4.928.778.337 1.387.538 1.86.689.782.248 1.493.213 2.056.129.627-.094 1.93-.79 2.2-1.554.273-.764.273-1.417.19-1.554-.082-.137-.3-.218-.626-.38z" />
+                    </svg>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Trial/Promo Card (Right 3 cols) */}
+          <div className="lg:col-span-3 flex">
+            <div className="bg-[#FAF8F2] border border-border-subtle rounded-3xl p-6 flex flex-col justify-between items-center text-center shadow-premium-sm hover:shadow-premium hover:border-primary/20 transition-all duration-300 w-full relative overflow-hidden group hover:-translate-y-2">
+              <div className="absolute inset-8 rounded-full bg-[#D9A441]/10 filter blur-xl group-hover:bg-[#D9A441]/25 transition-colors duration-500 animate-pulse-glow pointer-events-none" />
+              
+              {/* Shimmer Light Sweep on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+
+              <div>
+                <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider shadow-sm border border-emerald-200">
+                  {t("ফ্রি ট্রায়াল", "Free Trial")}
+                </span>
+                
+                <h3 className="font-serif text-lg font-bold text-primary mt-4">
+                  {t("১ম ক্লাস ফ্রি!", "1st Class Free!")}
+                </h3>
+                <p className="text-[10px] font-bold text-text-secondary/55 uppercase tracking-wider mt-1">
+                  {t("কোনো ফি ছাড়াই যাচাই করুন", "Try without commitment")}
+                </p>
+
+                {/* Illustration Container */}
+                <div className="relative w-full aspect-square max-w-[150px] mx-auto my-5 transform transition-transform duration-500 group-hover:scale-105 animate-float-slow">
+                  <Image
+                    src="/images/pricing_trial.png"
+                    alt={t("ফ্রি ট্রায়াল ক্লাস", "Free Trial Class")}
+                    fill
+                    className="object-contain drop-shadow-sm group-hover:drop-shadow-md"
+                    sizes="100px"
+                  />
+                </div>
+
+                <p className="text-text-secondary text-xs leading-relaxed font-semibold">
+                  {t(
+                    "আপনার সন্তানের জন্য অনলাইন ক্লাসটি কেমন হবে তা যাচাই করতে আজই একটি ফ্রি ট্রায়াল ক্লাস বুক করুন।",
+                    "Book a free trial class today to see how the online lessons fit your child's needs."
+                  )}
+                </p>
               </div>
-            );
-          })}
+
+              <Link
+                href={`https://wa.me/8801852077834?text=${encodeURIComponent(
+                  t(
+                    "আসসালামু আলাইকুম, আমি আমার সন্তানের জন্য একটি ফ্রি ট্রায়াল ক্লাস বুক করতে আগ্রহী।",
+                    "Assalamu Alaikum, I am interested in booking a Free Trial Class for my child."
+                  )
+                )}`}
+                target="_blank"
+                className="w-full mt-6 py-3 px-4 rounded-xl font-bold text-center text-xs bg-primary text-background-warm hover:bg-primary-hover shadow-premium-sm transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 active:scale-98"
+              >
+                <span>{t("ফ্রি ক্লাস বুক করুন", "Book Free Trial")}</span>
+              </Link>
+            </div>
+          </div>
         </div>
 
       </div>
