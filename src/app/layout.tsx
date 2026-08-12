@@ -30,11 +30,12 @@ const hindSiliguri = Hind_Siliguri({
 });
 
 export const metadata: Metadata = {
-  title: "Alif Online Quran Academy | অনলাইন কুরআন ও আরবি শিক্ষা",
-  description: "Alif Online Quran Academy-এ অভিজ্ঞ কুরআন শিক্ষকের মাধ্যমে শিশুদের অনলাইনে কুরআন, তাজবিদ, আরবি ও ইসলামী শিক্ষা শেখানো হয়।",
+  title: "Darul Hamida Quran Academy | অনলাইন কুরআন ও আরবি শিক্ষা",
+  description: "Darul Hamida Quran Academy-এ অভিজ্ঞ কুরআন শিক্ষকের মাধ্যমে শিশুদের অনলাইনে কুরআন, তাজবিদ, আরবি ও ইসলামী শিক্ষা শেখানো হয়।",
   keywords: [
-    "Alif Online Quran Academy",
-    "আলিফ অনলাইন কুরআন একাডেমি",
+    "Darul Hamida Quran Academy",
+    "দারুল হামিদা কুরআন একাডেমি",
+    "Darul Hamida",
     "Online Quran Academy",
     "Online Quran Classes",
     "অনলাইন কুরআন শিক্ষা",
@@ -43,8 +44,8 @@ export const metadata: Metadata = {
     "কুরআন তাজবিদ",
     "Online Quran Classes for Kids"
   ],
-  authors: [{ name: "Alif Online Quran Academy Team" }],
-  metadataBase: new URL("https://alifonline-academy.com"),
+  authors: [{ name: "Darul Hamida Quran Academy Team" }],
+  metadataBase: new URL("https://darulhamida-academy.com"),
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";

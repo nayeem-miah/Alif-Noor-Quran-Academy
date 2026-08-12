@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
@@ -88,34 +89,29 @@ export default function Navbar() {
           <div className="flex h-14 sm:h-16 items-center justify-between">
             
             <div className="flex items-center">
-              <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">
-                <svg 
-                  className="w-5 h-5 text-primary shrink-0 md:hidden" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                >
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-                </svg>
+              <Link href="/" className="flex items-center gap-2 group">
+                <Image
+                  src="/logo.png"
+                  alt="Darul Hamida Logo"
+                  width={36}
+                  height={36}
+                  className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg shadow-premium-sm transition-transform duration-300 group-hover:scale-105"
+                />
                 
                 <div className="font-serif font-bold text-primary tracking-tight">
-                  <span className="hidden md:inline text-lg lg:text-xl transition-colors group-hover:text-primary-hover">
-                    {t("আলিফ অনলাইন কুরআন একাডেমি", "Alif Online Quran Academy")}
+                  <span className="hidden lg:inline text-base xl:text-lg transition-colors group-hover:text-primary-hover">
+                    {t("দারুল হামিদা", "Darul Hamida")}
                   </span>
                   
-                  <div className="md:hidden text-[10px] sm:text-xs font-bold leading-none text-primary">
-                    <span>{t("আলিফ অনলাইন", "Alif Online")}</span>
+                  <div className="lg:hidden text-[10px] sm:text-xs font-bold leading-none text-primary">
+                    <span>{t("দারুল হামিদা", "Darul Hamida")}</span>
                     <span className="block mt-0.5">{t("কুরআন একাডেমি", "Quran Academy")}</span>
                   </div>
                 </div>
               </Link>
             </div>
 
-            <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+            <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
@@ -154,7 +150,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsOpen(true)}
                 type="button"
-                className="inline-flex md:hidden items-center justify-center p-1.5 rounded-lg text-primary hover:bg-card-cream/60 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+                className="inline-flex lg:hidden items-center justify-center p-1.5 rounded-lg text-primary hover:bg-card-cream/60 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
                 aria-expanded={isOpen}
                 aria-label="Open Navigation Menu"
               >
@@ -170,31 +166,26 @@ export default function Navbar() {
 
       <div 
         onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 bg-black/40 backdrop-blur-[1px] z-40 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 bg-black/40 backdrop-blur-[1px] z-40 transition-opacity duration-300 lg:hidden ${
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       />   
 
       <div 
-        className={`fixed top-0 right-0 h-full w-64 bg-background-warm border-l border-border-subtle z-50 shadow-premium-lg p-6 flex flex-col transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed top-0 right-0 h-full w-64 bg-background-warm border-l border-border-subtle z-50 shadow-premium-lg p-6 flex flex-col transition-transform duration-300 ease-out lg:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex items-center justify-between pb-6 border-b border-border-subtle">
           <div className="flex items-center gap-2">
-            <svg 
-              className="w-5 h-5 text-primary shrink-0" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-            <span className="font-serif font-bold text-sm text-primary">{t("আলিফ অনলাইন একাডেমি", "Alif Online Academy")}</span>
+            <Image
+              src="/logo.png"
+              alt="Darul Hamida Logo"
+              width={28}
+              height={28}
+              className="w-7 h-7 object-contain rounded-md"
+            />
+            <span className="font-serif font-bold text-sm text-primary">{t("দারুল হামিদা একাডেমি", "Darul Hamida Academy")}</span>
           </div>
           
           <button

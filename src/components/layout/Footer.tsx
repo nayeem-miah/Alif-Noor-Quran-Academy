@@ -13,13 +13,13 @@ export default function Footer() {
           
           <div className="hidden md:flex items-center justify-between">
             <div className="font-serif text-lg font-bold text-primary">
-              Alif Online Quran Academy
+              Darul Hamida Quran Academy
             </div>
             
             <div className="text-[11px] lg:text-xs text-text-secondary">
               {t(
-                `© ${new Date().getFullYear()} আলিফ অনলাইন কুরআন একাডেমি। প্রজ্ঞা ও ঐতিহ্যের আদর্শে পরিচালিত।`,
-                `© ${new Date().getFullYear()} Alif Online Quran Academy. Guided by Wisdom, Rooted in Tradition.`
+                `© ${new Date().getFullYear()} দারুল হামিদা কুরআন একাডেমি। প্রজ্ঞা ও ঐতিহ্যের আদর্শে পরিচালিত।`,
+                `© ${new Date().getFullYear()} Darul Hamida Quran Academy. Guided by Wisdom, Rooted in Tradition.`
               )}
             </div>
             
@@ -36,13 +36,13 @@ export default function Footer() {
           <div className="flex md:hidden flex-col items-center gap-4 text-center">
             
             <div className="font-serif text-lg font-bold text-primary">
-              Alif Online Quran Academy
+              Darul Hamida Quran Academy
             </div>
             
             <div className="text-xs text-text-secondary max-w-xs leading-relaxed font-medium">
               {t(
-                `© ${new Date().getFullYear()} আলিফ অনলাইন কুরআন একাডেমি। প্রজ্ঞা ও ঐতিহ্যের আদর্শে পরিচালিত।`,
-                `© ${new Date().getFullYear()} Alif Online Quran Academy. Guided by Wisdom, Rooted in Tradition.`
+                `© ${new Date().getFullYear()} দারুল হামিদা কুরআন একাডেমি। প্রজ্ঞা ও ঐতিহ্যের আদর্শে পরিচালিত।`,
+                `© ${new Date().getFullYear()} Darul Hamida Quran Academy. Guided by Wisdom, Rooted in Tradition.`
               )}
             </div>
             
