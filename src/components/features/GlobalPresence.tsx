@@ -220,38 +220,66 @@ export default function GlobalPresence() {
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full relative z-10">
         
-        {/* Top Centered Illustration */}
-        <div className="flex justify-center mb-10 sm:mb-12 animate-fade-in">
-          <div className="relative w-full max-w-[320px] sm:max-w-[360px] aspect-square rounded-3xl border border-border-subtle bg-gradient-to-b from-[#F2ECE1] to-[#FAF8F2] p-6 shadow-premium flex items-center justify-center overflow-hidden group hover:shadow-premium-lg transition-all duration-300">
-            <div className="absolute inset-8 rounded-full bg-[#D9A441]/10 filter blur-xl group-hover:bg-[#D9A441]/25 transition-colors duration-500 animate-pulse-glow pointer-events-none" />
-            
-            {/* Shimmer Sweep on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
+        {/* Grid Layout: Full Illustration + Info Text */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center mb-16 sm:mb-20">
+          
+          {/* Left Column: Full-size Illustration */}
+          <div className="lg:col-span-5 flex justify-center animate-fade-in">
+            <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-full aspect-square rounded-3xl border border-border-subtle bg-gradient-to-b from-[#F2ECE1] to-[#FAF8F2] p-6 sm:p-8 shadow-premium flex items-center justify-center overflow-hidden group hover:shadow-premium-lg transition-all duration-300">
+              <div className="absolute inset-8 rounded-full bg-[#D9A441]/10 filter blur-xl group-hover:bg-[#D9A441]/25 transition-colors duration-500 animate-pulse-glow pointer-events-none" />
+              
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer pointer-events-none" />
 
-            <div className="relative w-full h-full transform transition-transform duration-500 group-hover:scale-105 animate-float-slow">
-              <Image
-                src="/images/global_students.png"
-                alt={t("অনলাইন শিক্ষার্থীদের বৈশ্বিক উপস্থিতি", "Global Presence of Online Students")}
-                fill
-                className="object-contain drop-shadow-md group-hover:drop-shadow-xl transition-all duration-500"
-                sizes="(max-width: 640px) 100vw, 360px"
-              />
+              <div className="relative w-full h-full transform transition-transform duration-500 group-hover:scale-105 animate-float-slow">
+                <Image
+                  src="/images/global_students.png"
+                  alt={t("অনলাইন শিক্ষার্থীদের বৈশ্বিক উপস্থিতি", "Global Presence of Online Students")}
+                  fill
+                  className="object-contain drop-shadow-md group-hover:drop-shadow-xl transition-all duration-500"
+                  sizes="(max-width: 640px) 100vw, 400px"
+                  priority
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20 animate-fade-in">
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-secondary-dark mt-4">
-            {t("যেসব দেশের শিক্ষার্থীদের আমি পড়াই", "Countries of My Online Students")}
-          </h2>
-          <div className="w-12 h-[3.5px] bg-[#D9A441] mt-3.5 mx-auto rounded-full" />
-          <p className="text-text-secondary text-sm sm:text-base font-semibold mt-4 leading-relaxed">
-            {t(
-              "যুক্তরাজ্য, যুক্তরাষ্ট্র, ইউরোপ সহ বিশ্বের বিভিন্ন দেশে বসবাসরত শিক্ষার্থীদের অনলাইনে তাজউইদ ও শুদ্ধ উচ্চারণে কুরআন শিক্ষা দিয়ে আসছি।",
-              "Teaching Quran recitation & Tajweed online to children residing in UK, USA, Canada, Australia, and European countries."
-            )}
-          </p>
+          {/* Right Column: Heading and Descriptive Text */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left animate-fade-in-up">
+            <span className="text-xs sm:text-sm font-bold text-[#D9A441] bg-[#D9A441]/10 px-4 py-1.5 rounded-full border border-[#D9A441]/20">
+              {t("বৈশ্বিক শিক্ষা কার্যক্রম • Global Reach", "Global Reach • বৈশ্বিক শিক্ষা কার্যক্রম")}
+            </span>
+            
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-secondary-dark mt-4">
+              {t("যেসব দেশের শিক্ষার্থীদের আমি পড়াই", "Countries of My Online Students")}
+            </h2>
+            <div className="w-12 h-[3.5px] bg-[#D9A441] mt-3.5 rounded-full lg:mx-0 mx-auto" />
+            
+            <p className="text-text-secondary text-sm sm:text-base font-semibold mt-5 leading-relaxed max-w-2xl">
+              {t(
+                "যুক্তরাজ্য, যুক্তরাষ্ট্র, ইউরোপ সহ বিশ্বের বিভিন্ন দেশে বসবাসরত শিক্ষার্থীদের অনলাইনে তাজউইদ ও শুদ্ধ উচ্চারণে কুরআন শিক্ষা দিয়ে আসছি। প্রবাসী শিক্ষার্থীদের সময় ও সুবিধার কথা বিবেচনা করে অত্যন্ত সহজ ও আধুনিক পদ্ধতিতে ক্লাস পরিচালনা করা হয়।",
+                "Teaching Quran recitation & Tajweed online to children residing in UK, USA, Canada, Australia, and European countries. Classes are designed with flexible hours to accommodate different timezones."
+              )}
+            </p>
+
+            {/* Highlights List */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 w-full max-w-xl text-left">
+              <div className="flex items-center gap-3 bg-[#FAF8F2] border border-border-subtle p-3 rounded-xl shadow-premium-sm">
+                <span className="text-xl">🌍</span>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-primary">{t("টাইমজোন সমন্বয়", "Timezone Adjustment")}</h4>
+                  <p className="text-[10px] sm:text-xs text-text-secondary font-medium">{t("প্রবাসী শিক্ষার্থীদের সুবিধা অনুযায়ী ক্লাস", "Flexible hours for global students")}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 bg-[#FAF8F2] border border-border-subtle p-3 rounded-xl shadow-premium-sm">
+                <span className="text-xl">💬</span>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-primary">{t("সহজ যোগাযোগ", "Easy Communication")}</h4>
+                  <p className="text-[10px] sm:text-xs text-text-secondary font-medium">{t("বাংলা ও ইংরেজিতে সহজ সমন্বয়", "Bengali & English coordinate")}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         {/* Global Presence Map Pins / Flags Grid */}

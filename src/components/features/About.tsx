@@ -50,15 +50,28 @@ export default function About() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-12 lg:gap-16 items-center">     
           
-          {/* Left Column: Quran Image */}
-          <div className="md:col-span-5 w-full flex justify-center animate-fade-in">
-            <div className="relative w-full aspect-[4/3] md:aspect-[4/5] lg:aspect-square rounded-2xl sm:rounded-3xl border-4 border-white bg-card-cream shadow-premium overflow-hidden shrink-0 transition-transform duration-300 hover:scale-[1.01]">
+          {/* Left Column: About Images (Collage / Stack) */}
+          <div className="md:col-span-5 w-full flex justify-center animate-fade-in relative py-4 sm:py-6 md:py-10">
+            {/* Main Image: Kids Learning */}
+            <div className="relative w-full max-w-[320px] md:max-w-full aspect-square rounded-3xl border-4 border-white bg-card-cream shadow-premium overflow-hidden z-10 transition-transform duration-500 hover:scale-[1.02]">
               <Image
-                src="/quran-about.png"
-                alt="Holy Quran Learning and Recitation"
+                src="/images/benefit_supervision_v2.png"
+                alt={t("অনলাইন কুরআন শিক্ষা", "Online Quran Learning")}
                 fill
                 className="object-cover"
-                sizes="(max-w-768px) 100vw, (max-w-1200px) 40vw, 500px"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 400px"
+                priority
+              />
+            </div>
+
+            {/* Overlapping Secondary Image: Quran */}
+            <div className="absolute -bottom-2 -right-2 sm:bottom-0 sm:right-0 md:-bottom-2 md:-right-2 w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-2xl border-4 border-white bg-card-cream shadow-premium-lg overflow-hidden z-20 transition-all duration-300 hover:scale-105 hover:z-30">
+              <Image
+                src="/images/quran.png"
+                alt="Holy Quran Learning"
+                fill
+                className="object-cover"
+                sizes="180px"
               />
             </div>
           </div>        
@@ -140,16 +153,27 @@ export default function About() {
             {/* Scrollable Modal Content */}
             <div className="p-6 overflow-y-auto space-y-6 text-left text-sm sm:text-base leading-relaxed text-text-main">
               
-              <div className="bg-primary/5 p-4 rounded-xl border border-primary/10">
-                <p className="font-bold text-primary text-base text-center sm:text-lg">
-                  {t("আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু।", "Assalamu Alaikum Wa Rahmatullahi Wa Barakatuhu.")}
-                </p>
-                <p className="text-text-secondary text-sm text-center mt-2 font-medium">
-                  {t(
-                    "আপনি যদি আপনার সন্তানের জন্য একজন অভিজ্ঞ, আন্তরিক ও যত্নশীল কুরআন শিক্ষক খুঁজে থাকেন, তাহলে তাকে শিক্ষা ও দিকনির্দেশনা দিতে পারলে আমি সম্মানিত বোধ করব।",
-                    "If you are looking for an experienced, sincere, and caring Quran teacher for your child, I would be honored to guide and teach them."
-                  )}
-                </p>
+              <div className="flex flex-col sm:flex-row items-center gap-4 bg-primary/5 p-4 rounded-xl border border-primary/10">
+                <div className="relative w-18 h-18 sm:w-20 sm:h-20 rounded-full border-2 border-primary bg-card-cream overflow-hidden shrink-0 shadow-md">
+                  <Image
+                    src="/teacher-1.jpg"
+                    alt="Teacher Portrait"
+                    fill
+                    className="object-cover object-top"
+                    sizes="80px"
+                  />
+                </div>
+                <div className="text-center sm:text-left flex-grow">
+                  <p className="font-bold text-primary text-base sm:text-lg">
+                    {t("আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহি ওয়া বারাকাতুহু।", "Assalamu Alaikum Wa Rahmatullahi Wa Barakatuhu.")}
+                  </p>
+                  <p className="text-text-secondary text-xs sm:text-sm mt-1.5 font-semibold leading-relaxed">
+                    {t(
+                      "আপনি যদি আপনার সন্তানের জন্য একজন অভিজ্ঞ, আন্তরিক ও যত্নশীল কুরআন শিক্ষক খুঁজে থাকেন, তাহলে তাকে শিক্ষা ও দিকনির্দেশনা দিতে পারলে আমি সম্মানিত বোধ করব।",
+                      "If you are looking for an experienced, sincere, and caring Quran teacher for your child, I would be honored to guide and teach them."
+                    )}
+                  </p>
+                </div>
               </div>
 
               {/* About Me Section */}
