@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useState, FormEvent } from "react";
@@ -10,23 +11,53 @@ export default function Contact() {
   const [age, setAge] = useState("");
   const [timePref, setTimePref] = useState("morning");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isOpenSelect, setIsOpenSelect] = useState(false);
   const { t } = useLanguage();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name || !contact || !timezone || !age) {
       return;
     }
-    // Simulate successful booking locally
-    setSubmitted(true);
-    // Reset form fields
-    setName("");
-    // Keep fields reset
-    setContact("");
-    setTimezone("");
-    setAge("");
-    setTimePref("morning");
+    
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          contact,
+          timezone,
+          age,
+          timePref,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send email");
+      }
+
+      setSubmitted(true);
+      // Reset form fields
+      setName("");
+      setContact("");
+      setTimezone("");
+      setAge("");
+      setTimePref("morning");
+    } catch (error: any) {
+      console.error("Booking error:", error);
+      alert(t(
+        `বুকিং সম্পন্ন করতে সমস্যা হয়েছে: ${error.message || "অনুগ্রহ করে আবার চেষ্টা করুন"}`,
+        `Failed to submit booking: ${error.message || "Please try again later"}`
+      ));
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getPrefLabel = (val: string) => {
@@ -281,9 +312,20 @@ export default function Contact() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-3.5 sm:py-4 bg-primary text-background-warm font-bold rounded-full shadow-premium hover:bg-primary-hover active:scale-98 transition-all duration-200 mt-2 cursor-pointer text-sm sm:text-base"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 sm:py-4 bg-primary text-background-warm font-bold rounded-full shadow-premium hover:bg-primary-hover active:scale-98 transition-all duration-200 mt-2 cursor-pointer text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100 flex items-center justify-center gap-2"
                   >
-                    {t("সাবমিট করুন", "Submit Booking")}
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin h-5 w-5 text-background-warm" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        </svg>
+                        <span>{t("প্রসেস হচ্ছে...", "Processing...")}</span>
+                      </>
+                    ) : (
+                      <span>{t("সাবমিট করুন", "Submit Booking")}</span>
+                    )}
                   </button>
 
                 </form>
