@@ -237,7 +237,6 @@ export default function GlobalPresence() {
                   fill
                   className="object-contain drop-shadow-md group-hover:drop-shadow-xl transition-all duration-500"
                   sizes="(max-width: 640px) 100vw, 400px"
-                  priority
                 />
               </div>
             </div>

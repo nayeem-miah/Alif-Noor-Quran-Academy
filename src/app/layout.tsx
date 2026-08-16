@@ -46,6 +46,42 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Darul Hamida Quran Academy Team" }],
   metadataBase: new URL("https://darulhamida-academy.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Darul Hamida Quran Academy | অনলাইন কুরআন ও আরবি শিক্ষা",
+    description: "Darul Hamida Quran Academy-এ অভিজ্ঞ কুরআন শিক্ষকের মাধ্যমে শিশুদের অনলাইনে কুরআন, তাজবিদ, আরবি ও ইসলামী শিক্ষা শেখানো হয়।",
+    url: "https://darulhamida-academy.com",
+    siteName: "Darul Hamida Quran Academy",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Darul Hamida Quran Academy",
+      },
+    ],
+    locale: "bn_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Darul Hamida Quran Academy | অনলাইন কুরআন ও আরবি শিক্ষা",
+    description: "Darul Hamida Quran Academy-এ অভিজ্ঞ কুরআন শিক্ষকের মাধ্যমে শিশুদের অনলাইনে কুরআন, তাজবিদ, আরবি ও ইসলামী শিক্ষা শেখানো হয়।",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 import { LanguageProvider } from "@/context/LanguageContext";
